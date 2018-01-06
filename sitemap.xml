@@ -4,42 +4,42 @@ xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitem
 xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
-<loc>/</loc>
-<lastmod>2018-01-06T18:58:39-00:00</lastmod>
+<loc>https://csbwang.github.io/</loc>
+<lastmod>2018-01-06T20:54:40-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/archives.html</loc>
-<lastmod>2018-01-06T18:58:39-00:00</lastmod>
+<loc>https://csbwang.github.io/archives.html</loc>
+<lastmod>2018-01-06T20:54:40-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tags.html</loc>
-<lastmod>2018-01-06T18:58:39-00:00</lastmod>
+<loc>https://csbwang.github.io/tags.html</loc>
+<lastmod>2018-01-06T20:54:40-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/categories.html</loc>
-<lastmod>2018-01-06T18:58:39-00:00</lastmod>
+<loc>https://csbwang.github.io/categories.html</loc>
+<lastmod>2018-01-06T20:54:40-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tdosalm.html</loc>
+<loc>https://csbwang.github.io/tdosalm.html</loc>
 <lastmod>2018-01-06T00:00:00+01:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>/hmm.html</loc>
+<loc>https://csbwang.github.io/hmm.html</loc>
 <lastmod>2017-12-08T20:00:00+01:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
