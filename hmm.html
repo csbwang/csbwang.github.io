@@ -13,7 +13,7 @@
 <meta name="keywords" content="python, note, " />
 
 <meta property="og:title" content="HMM模型初探 "/>
-<meta property="og:url" content="https://csbwang.github.io/hmm" />
+<meta property="og:url" content="http://csbwang.github.io/hmm" />
 <meta property="og:description" content="" />
 <meta property="og:site_name" content="FelixWang&#39;s Blog" />
 <meta property="og:article:author" content="FelixWang" />
@@ -25,20 +25,20 @@
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="https://csbwang.github.io/theme/css/pygments.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="https://csbwang.github.io/theme/tipuesearch/tipuesearch.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="https://csbwang.github.io/theme/css/elegant.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="https://csbwang.github.io/theme/css/custom.css" media="screen">
-        <link rel="shortcut icon" href="https://csbwang.github.io/theme/images/favicon.ico" type="image/x-icon" type="image/png" />
-        <link rel="icon" href="https://csbwang.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
-        <link rel="apple-touch-icon" href="https://csbwang.github.io/theme/images/apple-touch-icon.png"  type="image/png" />
-        <link rel="apple-touch-icon" sizes="57x57" href="https://csbwang.github.io/theme/images/apple-touch-icon-57x57.png" type="image/png" />
-        <link rel="apple-touch-icon" sizes="72x72" href="https://csbwang.github.io/theme/images/apple-touch-icon-72x72.png" type="image/png" />
-        <link rel="apple-touch-icon" sizes="76x76" href="https://csbwang.github.io/theme/images/apple-touch-icon-76x76.png" type="image/png" />
-        <link rel="apple-touch-icon" sizes="114x114" href="https://csbwang.github.io/theme/images/apple-touch-icon-114x114.png" type="image/png" />
-        <link rel="apple-touch-icon" sizes="120x120" href="https://csbwang.github.io/theme/images/apple-touch-icon-120x120.png" type="image/png" />
-        <link rel="apple-touch-icon" sizes="144x144" href="https://csbwang.github.io/theme/images/apple-touch-icon-144x144.png" type="image/png" />
-        <link rel="apple-touch-icon" sizes="152x152" href="https://csbwang.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
+        <link rel="stylesheet" type="text/css" href="http://csbwang.github.io/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://csbwang.github.io/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://csbwang.github.io/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://csbwang.github.io/theme/css/custom.css" media="screen">
+        <link rel="shortcut icon" href="http://csbwang.github.io/theme/images/favicon.ico" type="image/x-icon" type="image/png" />
+        <link rel="icon" href="http://csbwang.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
+        <link rel="apple-touch-icon" href="http://csbwang.github.io/theme/images/apple-touch-icon.png"  type="image/png" />
+        <link rel="apple-touch-icon" sizes="57x57" href="http://csbwang.github.io/theme/images/apple-touch-icon-57x57.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="http://csbwang.github.io/theme/images/apple-touch-icon-72x72.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="http://csbwang.github.io/theme/images/apple-touch-icon-76x76.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="http://csbwang.github.io/theme/images/apple-touch-icon-114x114.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="http://csbwang.github.io/theme/images/apple-touch-icon-120x120.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="http://csbwang.github.io/theme/images/apple-touch-icon-144x144.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="http://csbwang.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
     </head>
     <body>
         <div id="content-sans-footer">
@@ -50,14 +50,14 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="https://csbwang.github.io/"><span class=site-name>FelixWang's Blog</span></a>
+                    <a class="brand" href="http://csbwang.github.io/"><span class=site-name>FelixWang's Blog</span></a>
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right top-menu">
-                            <li ><a href="https://csbwang.github.io">Home</a></li>
-                            <li ><a href="https://csbwang.github.io/categories.html">Categories</a></li>
-                            <li ><a href="https://csbwang.github.io/tags.html">Tags</a></li>
-                            <li ><a href="https://csbwang.github.io/archives.html">Archives</a></li>
-                            <li><form class="navbar-search" action="https://csbwang.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            <li ><a href="http://csbwang.github.io">Home</a></li>
+                            <li ><a href="http://csbwang.github.io/categories.html">Categories</a></li>
+                            <li ><a href="http://csbwang.github.io/tags.html">Tags</a></li>
+                            <li ><a href="http://csbwang.github.io/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="http://csbwang.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
                         </ul>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
 <article>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="https://csbwang.github.io/hmm"> HMM模型初探  </a></h1>
+    <h1><a href="http://csbwang.github.io/hmm"> HMM模型初探  </a></h1>
     </header>
 </div>
 
@@ -1188,7 +1188,7 @@ h6:hover .anchor-link {
     <div class="accordion-group">
         <div class="accordion-heading">
             <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
-                href="https://csbwang.github.io/hmm#disqus_thread">
+                href="http://csbwang.github.io/hmm#disqus_thread">
                 Comments
             </a>
         </div>
@@ -1198,8 +1198,8 @@ h6:hover .anchor-link {
                     <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'FelixWang';
-        var disqus_identifier = 'https://csbwang.github.io/hmm';
-    var disqus_url = 'https://csbwang.github.io/hmm';
+        var disqus_identifier = 'http://csbwang.github.io/hmm';
+    var disqus_url = 'http://csbwang.github.io/hmm';
 
     (function() {
          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -1221,7 +1221,7 @@ h6:hover .anchor-link {
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="next-article"><a href="https://csbwang.github.io/tdosalm" title="Next: The difference of SVM and LR model">The difference of SVM and LR model</a> »</li>
+                <li class="next-article"><a href="http://csbwang.github.io/tdosalm" title="Next: The difference of SVM and LR model">The difference of SVM and LR model</a> »</li>
             </ul>
             </nav>
             </aside>
@@ -1231,10 +1231,10 @@ h6:hover .anchor-link {
             <h4>Published</h4>
             <time pubdate="pubdate" datetime="2017-12-08T20:00:00+08:00">12 8, 2017</time>
             <h4>Category</h4>
-            <a class="category-link" href="https://csbwang.github.io/categories.html#note-ref">note</a>
+            <a class="category-link" href="http://csbwang.github.io/categories.html#note-ref">note</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="https://csbwang.github.io/tags.html#python-ref">python
+                <li><a href="http://csbwang.github.io/tags.html#python-ref">python
                     <span>1</span>
 </a></li>
             </ul>
