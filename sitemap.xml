@@ -4,45 +4,66 @@ xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitem
 xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
-<loc>https://csbwang.github.io/</loc>
-<lastmod>2018-01-07T11:56:02-00:00</lastmod>
+<loc>http://localhost:8000/</loc>
+<lastmod>2018-01-07T15:47:39-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://csbwang.github.io/archives.html</loc>
-<lastmod>2018-01-07T11:56:02-00:00</lastmod>
+<loc>http://localhost:8000/archives.html</loc>
+<lastmod>2018-01-07T15:47:39-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://csbwang.github.io/tags.html</loc>
-<lastmod>2018-01-07T11:56:02-00:00</lastmod>
+<loc>http://localhost:8000/tags.html</loc>
+<lastmod>2018-01-07T15:47:39-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://csbwang.github.io/categories.html</loc>
-<lastmod>2018-01-07T11:56:02-00:00</lastmod>
+<loc>http://localhost:8000/categories.html</loc>
+<lastmod>2018-01-07T15:47:39-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://csbwang.github.io/tdosalm.html</loc>
-<lastmod>2018-01-06T00:00:00+01:00</lastmod>
+<loc>http://localhost:8000/tdosalm</loc>
+<lastmod>2018-01-06T00:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
-<priority>0.7</priority>
+<priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://csbwang.github.io/hmm.html</loc>
-<lastmod>2017-12-08T20:00:00+01:00</lastmod>
+<loc>http://localhost:8000/hmm</loc>
+<lastmod>2017-12-08T20:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
-<priority>0.7</priority>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://localhost:8000/tag/machine-learning.html</loc>
+<lastmod>2018-01-06T00:00:00+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://localhost:8000/tag/python.html</loc>
+<lastmod>2017-12-08T20:00:00+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://localhost:8000/author/felixwang.html</loc>
+<lastmod>2018-01-06T00:00:00+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
 </url>
 
 </urlset>
