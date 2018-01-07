@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://csbwang.github.io/</loc>
-<lastmod>2018-01-07T16:22:33-00:00</lastmod>
+<lastmod>2018-01-07T16:28:46-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://csbwang.github.io/archives.html</loc>
-<lastmod>2018-01-07T16:22:33-00:00</lastmod>
+<lastmod>2018-01-07T16:28:46-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://csbwang.github.io/tags.html</loc>
-<lastmod>2018-01-07T16:22:33-00:00</lastmod>
+<lastmod>2018-01-07T16:28:46-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://csbwang.github.io/categories.html</loc>
-<lastmod>2018-01-07T16:22:33-00:00</lastmod>
+<lastmod>2018-01-07T16:28:46-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -46,15 +46,15 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>https://csbwang.github.io/tag/machine-learning.html</loc>
-<lastmod>2018-01-06T00:00:00+08:06</lastmod>
+<loc>https://csbwang.github.io/tag/python.html</loc>
+<lastmod>2017-12-08T20:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://csbwang.github.io/tag/python.html</loc>
-<lastmod>2017-12-08T20:00:00+08:06</lastmod>
+<loc>https://csbwang.github.io/tag/machine-learning.html</loc>
+<lastmod>2018-01-06T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
