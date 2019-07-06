@@ -5,29 +5,36 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://csbwang.github.io/</loc>
-<lastmod>2018-01-07T17:15:12-00:00</lastmod>
+<lastmod>2019-07-06T16:05:23-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://csbwang.github.io/archives.html</loc>
-<lastmod>2018-01-07T17:15:12-00:00</lastmod>
+<lastmod>2019-07-06T16:05:23-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://csbwang.github.io/tags.html</loc>
-<lastmod>2018-01-07T17:15:12-00:00</lastmod>
+<lastmod>2019-07-06T16:05:23-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://csbwang.github.io/categories.html</loc>
-<lastmod>2018-01-07T17:15:12-00:00</lastmod>
+<lastmod>2019-07-06T16:05:23-00:00</lastmod>
 <changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://csbwang.github.io/basic-math</loc>
+<lastmod>2019-07-06T00:00:00+08:00</lastmod>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -46,13 +53,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>https://csbwang.github.io/tag/machine-learning.html</loc>
-<lastmod>2018-01-06T00:00:00+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
 <loc>https://csbwang.github.io/tag/python.html</loc>
 <lastmod>2017-12-08T20:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
@@ -60,8 +60,22 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>https://csbwang.github.io/tag/machine-learning.html</loc>
+<lastmod>2019-07-06T00:00:00+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>https://csbwang.github.io/author/felixwang.html</loc>
-<lastmod>2018-01-06T00:00:00+08:06</lastmod>
+<lastmod>2017-12-08T20:00:00+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://csbwang.github.io/author/warmber.html</loc>
+<lastmod>2019-07-06T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

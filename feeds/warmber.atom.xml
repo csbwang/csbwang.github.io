@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>warmber's Blog</title><link href="https://csbwang.github.io/" rel="alternate"></link><link href="https://csbwang.github.io/feeds/warmber.atom.xml" rel="self"></link><id>https://csbwang.github.io/</id><updated>2019-07-06T00:00:00+08:00</updated><entry><title>basic math</title><link href="https://csbwang.github.io/basic-math" rel="alternate"></link><published>2019-07-06T00:00:00+08:00</published><updated>2019-07-06T00:00:00+08:00</updated><author><name>warmber</name></author><id>tag:csbwang.github.io,2019-07-06:basic-math</id><summary type="html">&lt;h1 id="_1"&gt;第一章 数学基础&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;深度学习通常又需要哪些数学基础？深度学习里的数学到底难在哪里？通常初学者都会有这些问题，在网络推荐及书本推荐里，经常看到会列出一系列数学科目，比如微积分、线性代数、概率论、复变函数、数值计算、优化理论、信息论等等。这些数学知识有相关性，但实际上按照这样的知识范围来学习，学习成本会很久，而且会很枯燥，本章我们通过选举一些数学基础里容易混淆的一些概念做以介绍，帮助大家更好的理清这些易混淆概念之间的关系。&lt;/p&gt;
+&lt;h2 id="11"&gt;1.1 向量和矩阵&lt;a class="headerlink" href="#11" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="111"&gt;1.1.1 标量、向量、矩阵、张量之间的联系&lt;a class="headerlink" href="#111" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;标量（scalar）&lt;/strong&gt;&lt;br /&gt;&amp;nbsp;一个标量表示一个单独的数，它不同于线性代数中研究的其他大部分对象（通常是多个数的数组）。我们用斜体表示标量。标量通常被赋予小写的变量名称。 &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;向量（vector）&lt;/strong&gt;&lt;br /&gt;
+​一个向量表示一组有序排列的数。通过次序中的索引，我们可以确定每个单独的数。通常我们赋予向量粗体的小写变量名称，比如xx。向量中的元素可以通过带脚标的斜体表示。向量&lt;span class="math"&gt;\(X\)&lt;/span&gt;的第一个元素是&lt;span class="math"&gt;\(X_1\)&lt;/span&gt;，第二个元素是&lt;span class="math"&gt;\(X_2\)&lt;/span&gt;，以此类推。我们也会注明存储在向量中的元素的类型（实数、虚数等）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;矩阵（matrix）&lt;/strong&gt;&lt;br /&gt;
+​矩阵是具有相同特征和纬度的对象的集合，表现为一张二维数据表。其意义是一个对象表示为矩阵中的一行，一个特征表示为矩阵中的一列，每个特征都有数值型的取值。通常会赋予矩阵粗体的大写变量名称，比如&lt;span class="math"&gt;\(A\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;张量（tensor）&lt;/strong&gt;&lt;br /&gt;
+​在某些情况下，我们会讨论坐标超过两维的数组。一般地，一个数组中的元素分布在若干维坐标的规则网格中，我们将其称之为张量。使用 &lt;span class="math"&gt;\(A\)&lt;/span&gt; 来表示张量“A”。张量&lt;span class="math"&gt;\(A\)&lt;/span&gt;中坐标为&lt;span class="math"&gt;\((i,j,k)\)&lt;/span&gt;的元素记作&lt;span class="math"&gt;\(A_{(i,j,k)}\)&lt;/span&gt;。 &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;四者之间关系&lt;/strong&gt;  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;标量是0阶张量，向量是一阶张量。举例：&lt;br /&gt;
+​标量就是知道棍子的长度，但是你不会知道棍子指向哪儿。&lt;br /&gt;
+​向量就是不但知道棍子的长度，还知道棍子指向前面还是后面。&lt;br /&gt;&amp;nbsp;​张量就是不但知道棍子的长度，也知道棍子指向前面还是后面，还能知道这棍子又向上/下和左/右偏转了多少。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="112"&gt;1.1.2 张量与矩阵的区别&lt;a class="headerlink" href="#112" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;从代数角度讲， 矩阵它是向量的推广。向量可以看成一维的“表格”（即分量按照顺序排成一排）， 矩阵是二维的“表格”（分量按照纵横位置排列）， 那么&lt;span class="math"&gt;\(n\)&lt;/span&gt;阶张量就是所谓的&lt;span class="math"&gt;\(n\)&lt;/span&gt;维的“表格”。&amp;nbsp;张量的严格定义是利用线性映射来描述。&lt;/li&gt;
+&lt;li&gt;从几何角度讲，&amp;nbsp;矩阵是一个真正的几何量，也就是说，它是一个不随参照系的坐标变换而变化的东西。向量也具有这种特性。&lt;/li&gt;
+&lt;li&gt;张量可以用3×3矩阵形式来表达。 &lt;/li&gt;
+&lt;li&gt;表示标量的数和表示向量的三维数组也可分别看作1×1，1×3的矩阵。 &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="113"&gt;1.1.3 矩阵和向量相乘结果&lt;a class="headerlink" href="#113" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;若使用爱因斯坦求和约定（Einstein summation convention），矩阵&lt;span class="math"&gt;\(A\)&lt;/span&gt;, &lt;span class="math"&gt;\(B\)&lt;/span&gt;相乘得到矩阵&lt;span class="math"&gt;\(C\)&lt;/span&gt;可以用下式表示：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$ a_{ik}*b_{kj}=c_{ij} \tag{1.3-1} $$&lt;/div&gt;
+&lt;p&gt; 
+其中，&lt;span class="math"&gt;\(a_{ik}\)&lt;/span&gt;, &lt;span class="math"&gt;\(b_{kj}\)&lt;/span&gt;, &lt;span class="math"&gt;\(c_{ij}\)&lt;/span&gt;分别表示矩阵&lt;span class="math"&gt;\(A, B, C\)&lt;/span&gt;的元素，&lt;span class="math"&gt;\(k\)&lt;/span&gt;出现两次，是一个哑变量（Dummy Variables）表示对该参数进行遍历求和。
+而矩阵和向量相乘可以看成是矩阵相乘的一个特殊情况，例如：矩阵&lt;span class="math"&gt;\(B\)&lt;/span&gt;是一个&lt;span class="math"&gt;\(n \times 1\)&lt;/span&gt;的矩阵。&lt;/p&gt;
+&lt;h3 id="114"&gt;1.1.4 向量和矩阵的范数归纳&lt;a class="headerlink" href="#114" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;向量的范数(norm)&lt;/strong&gt;&lt;br /&gt;
+​   定义一个向量为：&lt;span class="math"&gt;\(\vec{a}=[-5, 6, 8, -10]\)&lt;/span&gt;。任意一组向量设为&lt;span class="math"&gt;\(\vec{x}=(x_1,x_2,...,x_N)\)&lt;/span&gt;。其不同范数求解如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;向量的1范数：向量的各个元素的绝对值之和，上述向量&lt;span class="math"&gt;\(\vec{a}\)&lt;/span&gt;的1范数结果就是：29。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="math"&gt;$$
+\Vert\vec{x}\Vert_1=\sum_{i=1}^N\vert{x_i}\vert
+$$&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;向量的2范数：向量的每个元素的平方和再开平方根，上述&lt;span class="math"&gt;\(\vec{a}\)&lt;/span&gt;的2范数结果就是：15。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="math"&gt;$$
+\Vert\vec{x}\Vert_2=\sqrt{\sum_{i=1}^N{\vert{x_i}\vert}^2}
+$$&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;向量的负无穷范数：向量的所有元素的绝对值中最小的：上述向量&lt;span class="math"&gt;\(\vec{a}\)&lt;/span&gt;的负无穷范数结果就是：5。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="math"&gt;$$
+\Vert\vec{x}\Vert_{-\infty}=\min{|{x_i}|}
+$$&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;向量的正无穷范数：向量的所有元素的绝对值中最大的：上述向量&lt;span class="math"&gt;\(\vec{a}\)&lt;/span&gt;的正无穷范数结果就是：10。 &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="math"&gt;$$
+\Vert\vec{x}\Vert_{+\infty}=\max{|{x_i}|}
+$$&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;向量的p范数：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="math"&gt;$$
+L_p=\Vert\vec{x}\Vert_p=\sqrt[p]{\sum_{i=1}^{N}|{x_i}|^p}
+$$&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;矩阵的范数&lt;/strong&gt;  &lt;/p&gt;
+&lt;p&gt;定义一个矩阵&lt;span class="math"&gt;\(A=[-1, 2, -3; 4, -6, 6]\)&lt;/span&gt;。 任意矩阵定义为：&lt;span class="math"&gt;\(A_{m\times n}\)&lt;/span&gt;，其元素为 &lt;span class="math"&gt;\(a_{ij}\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;矩阵的范数定义为&lt;/p&gt;
+&lt;div class="math"&gt;$$
+\Vert{A}\Vert_p :=\sup_{x\neq 0}\frac{\Vert{Ax}\Vert_p}{\Vert{x}\Vert_p}
+$$&lt;/div&gt;
+&lt;p&gt;当向量取不同范数时,&amp;nbsp;相应得到了不同的矩阵范数。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;矩阵的1范数（列范数）&lt;/strong&gt;：矩阵的每一列上的元&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;素绝对值先求和，再从中取个最大的,（列和最大），上述矩阵&lt;span class="math"&gt;\(A\)&lt;/span&gt;的1范数先得到&lt;span class="math"&gt;\([5,8,9]\)&lt;/span&gt;，再取最大的最终结果就是：9。
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+\Vert A\Vert_1=\max_{1\le j\le n}\sum_{i=1}^m|{a_{ij}}|
+$$&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;矩阵的2范数&lt;/strong&gt;：矩阵&lt;span class="math"&gt;\(A^TA\)&lt;/span&gt;的最大特征值开平方根，上述矩阵&lt;span class="math"&gt;\(A\)&lt;/span&gt;的2范数得到的最终结果是：10.0623。 &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="math"&gt;$$
+\Vert A\Vert_2=\sqrt{\lambda_{max}(A^T A)}
+$$&lt;/div&gt;
+&lt;p&gt;其中， &lt;span class="math"&gt;\(\lambda_{max}(A^T A)\)&lt;/span&gt; 为 &lt;span class="math"&gt;\(A^T A​\)&lt;/span&gt; 的特征值绝对值的最大值。
+- &lt;strong&gt;矩阵的无穷范数（行范数）&lt;/strong&gt;：矩阵的每一行上的元素绝对值先求和，再从中取个最大的，（行和最大），上述矩阵&lt;span class="math"&gt;\(A\)&lt;/span&gt;的行范数先得到&lt;span class="math"&gt;\([6；16]\)&lt;/span&gt;，再取最大的最终结果就是：16。 
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+\Vert A\Vert_{\infty}=\max_{1\le i \le m}\sum_{j=1}^n |{a_{ij}}|
+$$&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;矩阵的核范数&lt;/strong&gt;：矩阵的奇异值（将矩阵svd分解）之和，这个范数可以用来低秩表示（因为最小化核范数，相当于最小化矩阵的秩——低秩），上述矩阵A最终结果就是：10.9287。  &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;矩阵的L0范数&lt;/strong&gt;：矩阵的非0元素的个数，通常用它来表示稀疏，L0范数越小0元素越多，也就越稀疏，上述矩阵&lt;span class="math"&gt;\(A\)&lt;/span&gt;最终结果就是：6。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;矩阵的L1范数&lt;/strong&gt;：矩阵中的每个元素绝对值之和，它是L0范数的最优凸近似，因此它也可以表示稀疏，上述矩阵&lt;span class="math"&gt;\(A\)&lt;/span&gt;最终结果就是：22。  &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;矩阵的F范数&lt;/strong&gt;：矩阵的各个元素平方之和再开平方根，它通常也叫做矩阵的L2范数，它的优点在于它是一个凸函数，可以求导求解，易于计算，上述矩阵A最终结果就是：10.0995。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="math"&gt;$$
+\Vert A\Vert_F=\sqrt{(\sum_{i=1}^m\sum_{j=1}^n{| a_{ij}|}^2)}
+$$&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;矩阵的L21范数&lt;/strong&gt;：矩阵先以每一列为单位，求每一列的F范数（也可认为是向量的2范数），然后再将得到的结果求L1范数（也可认为是向量的1范数），很容易看出它是介于L1和L2之间的一种范数，上述矩阵&lt;span class="math"&gt;\(A\)&lt;/span&gt;最终结果就是：17.1559。 &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;矩阵的&amp;nbsp;p范数&lt;/strong&gt; &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="math"&gt;$$
+\Vert A\Vert_p=\sqrt[p]{(\sum_{i=1}^m\sum_{j=1}^n{| a_{ij}|}^p)}
+$$&lt;/div&gt;
+&lt;h3 id="115"&gt;1.1.5 如何判断一个矩阵为正定&lt;a class="headerlink" href="#115" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;判定一个矩阵是否为正定，通常有以下几个方面：  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;顺序主子式全大于0；  &lt;/li&gt;
+&lt;li&gt;存在可逆矩阵&lt;span class="math"&gt;\(C\)&lt;/span&gt;使&lt;span class="math"&gt;\(C^TC\)&lt;/span&gt;等于该矩阵；&lt;/li&gt;
+&lt;li&gt;正惯性指数等于&lt;span class="math"&gt;\(n\)&lt;/span&gt;；&lt;/li&gt;
+&lt;li&gt;合同于单位矩阵&lt;span class="math"&gt;\(E\)&lt;/span&gt;（即：规范形为&lt;span class="math"&gt;\(E\)&lt;/span&gt;）&lt;/li&gt;
+&lt;li&gt;标准形中主对角元素全为正；&lt;/li&gt;
+&lt;li&gt;特征值全为正；&lt;/li&gt;
+&lt;li&gt;是某基的度量矩阵。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="12"&gt;1.2 导数和偏导数&lt;a class="headerlink" href="#12" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="121"&gt;1.2.1 导数偏导计算&lt;a class="headerlink" href="#121" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;导数定义&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;导数(derivative)代表了在自变量变化趋于无穷小的时候，函数值的变化与自变量的变化的比值。几何意义是这个点的切线。物理意义是该时刻的（瞬时）变化率。&amp;nbsp;​&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;注意&lt;/em&gt;：在一元函数中，只有一个自变量变动，也就是说只存在一个方向的变化率，这也就是为什么一元函数没有偏导数的原因。在物理学中有平均速度和瞬时速度之说。平均速度有&lt;/p&gt;
+&lt;div class="math"&gt;$$
+v=\frac{s}{t}
+$$&lt;/div&gt;
+&lt;p&gt;其中&lt;span class="math"&gt;\(v\)&lt;/span&gt;表示平均速度，&lt;span class="math"&gt;\(s\)&lt;/span&gt;表示路程，&lt;span class="math"&gt;\(t\)&lt;/span&gt;表示时间。这个公式可以改写为&lt;/p&gt;
+&lt;div class="math"&gt;$$
+\bar{v}=\frac{\Delta s}{\Delta t}=\frac{s(t_0+\Delta t)-s(t_0)}{\Delta t}
+$$&lt;/div&gt;
+&lt;p&gt;其中&lt;span class="math"&gt;\(\Delta s\)&lt;/span&gt;表示两点之间的距离，而&lt;span class="math"&gt;\(\Delta t\)&lt;/span&gt;表示走过这段距离需要花费的时间。当&lt;span class="math"&gt;\(\Delta t\)&lt;/span&gt;趋向于0（&lt;span class="math"&gt;\(\Delta t \to 0\)&lt;/span&gt;）时，也就是时间变得很短时，平均速度也就变成了在&lt;span class="math"&gt;\(t_0\)&lt;/span&gt;时刻的瞬时速度，表示成如下形式：&lt;/p&gt;
+&lt;div class="math"&gt;$$
+v(t_0)=\lim_{\Delta t \to 0}{\bar{v}}=\lim_{\Delta t \to 0}{\frac{\Delta s}{\Delta t}}=\lim_{\Delta t \to 0}{\frac{s(t_0+\Delta t)-s(t_0)}{\Delta t}}
+$$&lt;/div&gt;
+&lt;p&gt;实际上，上式表示的是路程&lt;span class="math"&gt;\(s\)&lt;/span&gt;关于时间&lt;span class="math"&gt;\(t\)&lt;/span&gt;的函数在&lt;span class="math"&gt;\(t=t_0\)&lt;/span&gt;处的导数。一般的，这样定义导数：如果平均变化率的极限存在，即有&lt;/p&gt;
+&lt;div class="math"&gt;$$
+\lim_{\Delta x \to 0}{\frac{\Delta y}{\Delta x}}=\lim_{\Delta x \to 0}{\frac{f(x_0+\Delta x)-f(x_0)}{\Delta x}}
+$$&lt;/div&gt;
+&lt;p&gt;则称此极限为函数 &lt;span class="math"&gt;\(y=f(x)\)&lt;/span&gt; 在点 &lt;span class="math"&gt;\(x_0\)&lt;/span&gt; 处的导数。记作 &lt;span class="math"&gt;\(f'(x_0)\)&lt;/span&gt; 或 &lt;span class="math"&gt;\(y'\vert_{x=x_0}\)&lt;/span&gt; 或 &lt;span class="math"&gt;\(\frac{dy}{dx}\vert_{x=x_0}\)&lt;/span&gt; 或 &lt;span class="math"&gt;\(\frac{df(x)}{dx}\vert_{x=x_0}\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;通俗地说，导数就是曲线在某一点切线的斜率。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;偏导数&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;既然谈到偏导数(partial derivative)，那就至少涉及到两个自变量。以两个自变量为例，&lt;span class="math"&gt;\(z=f(x,y)​\)&lt;/span&gt;，从导数到偏导数，也就是从曲线来到了曲面。曲线上的一点，其切线只有一条。但是曲面上的一点，切线有无数条。而偏导数就是指多元函数沿着坐标轴的变化率。 &lt;/p&gt;
+&lt;p&gt;&lt;em&gt;注意&lt;/em&gt;：直观地说，偏导数也就是函数在某一点上沿坐标轴正方向的的变化率。&lt;/p&gt;
+&lt;p&gt;设函数&lt;span class="math"&gt;\(z=f(x,y)​\)&lt;/span&gt;在点&lt;span class="math"&gt;\((x_0,y_0)​\)&lt;/span&gt;的领域内有定义，当&lt;span class="math"&gt;\(y=y_0​\)&lt;/span&gt;时，&lt;span class="math"&gt;\(z​\)&lt;/span&gt;可以看作关于&lt;span class="math"&gt;\(x​\)&lt;/span&gt;的一元函数&lt;span class="math"&gt;\(f(x,y_0)​\)&lt;/span&gt;，若该一元函数在&lt;span class="math"&gt;\(x=x_0​\)&lt;/span&gt;处可导，即有&lt;/p&gt;
+&lt;div class="math"&gt;$$
+\lim_{\Delta x \to 0}{\frac{f(x_0+\Delta x,y_0)-f(x_0,y_0)}{\Delta x}}=A
+$$&lt;/div&gt;
+&lt;p&gt;函数的极限&lt;span class="math"&gt;\(A\)&lt;/span&gt;存在。那么称&lt;span class="math"&gt;\(A\)&lt;/span&gt;为函数&lt;span class="math"&gt;\(z=f(x,y)\)&lt;/span&gt;在点&lt;span class="math"&gt;\((x_0,y_0)\)&lt;/span&gt;处关于自变量&lt;span class="math"&gt;\(x\)&lt;/span&gt;的偏导数，记作&lt;span class="math"&gt;\(f_x(x_0,y_0)\)&lt;/span&gt;或&lt;span class="math"&gt;\(\frac{\partial z}{\partial x}\vert_{y=y_0}^{x=x_0}\)&lt;/span&gt;或&lt;span class="math"&gt;\(\frac{\partial f}{\partial x}\vert_{y=y_0}^{x=x_0}\)&lt;/span&gt;或&lt;span class="math"&gt;\(z_x\vert_{y=y_0}^{x=x_0}\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;偏导数在求解时可以将另外一个变量看做常数，利用普通的求导方式求解，比如&lt;span class="math"&gt;\(z=3x^2+xy\)&lt;/span&gt;关于&lt;span class="math"&gt;\(x\)&lt;/span&gt;的偏导数就为&lt;span class="math"&gt;\(z_x=6x+y\)&lt;/span&gt;，这个时候&lt;span class="math"&gt;\(y\)&lt;/span&gt;相当于&lt;span class="math"&gt;\(x\)&lt;/span&gt;的系数。&lt;/p&gt;
+&lt;p&gt;某点&lt;span class="math"&gt;\((x_0,y_0)\)&lt;/span&gt;处的偏导数的几何意义为曲面&lt;span class="math"&gt;\(z=f(x,y)\)&lt;/span&gt;与面&lt;span class="math"&gt;\(x=x_0\)&lt;/span&gt;或面&lt;span class="math"&gt;\(y=y_0\)&lt;/span&gt;交线在&lt;span class="math"&gt;\(y=y_0\)&lt;/span&gt;或&lt;span class="math"&gt;\(x=x_0\)&lt;/span&gt;处切线的斜率。  &lt;/p&gt;
+&lt;h3 id="122"&gt;1.2.2 导数和偏导数有什么区别？&lt;a class="headerlink" href="#122" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;导数和偏导没有本质区别，如果极限存在，都是当自变量的变化量趋于0时，函数值的变化量与自变量变化量比值的极限。  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;一元函数，一个&lt;span class="math"&gt;\(y\)&lt;/span&gt;对应一个&lt;span class="math"&gt;\(x\)&lt;/span&gt;，导数只有一个。  &lt;/li&gt;
+&lt;li&gt;二元函数，一个&lt;span class="math"&gt;\(z\)&lt;/span&gt;对应一个&lt;span class="math"&gt;\(x\)&lt;/span&gt;和一个&lt;span class="math"&gt;\(y\)&lt;/span&gt;，有两个导数：一个是&lt;span class="math"&gt;\(z\)&lt;/span&gt;对&lt;span class="math"&gt;\(x\)&lt;/span&gt;的导数，一个是&lt;span class="math"&gt;\(z\)&lt;/span&gt;对&lt;span class="math"&gt;\(y\)&lt;/span&gt;的导数，称之为偏导。  &lt;/li&gt;
+&lt;li&gt;求偏导时要注意，对一个变量求导，则视另一个变量为常数，只对改变量求导，从而将偏导的求解转化成了一元函数的求导。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="13"&gt;1.3 特征值和特征向量&lt;a class="headerlink" href="#13" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="131"&gt;1.3.1 特征值分解与特征向量&lt;a class="headerlink" href="#131" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;特征值分解可以得到特征值(eigenvalues)与特征向量(eigenvectors)；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;特征值表示的是这个特征到底有多重要，而特征向量表示这个特征是什么。  &lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果说一个向量&lt;span class="math"&gt;\(\vec{v}\)&lt;/span&gt;是方阵&lt;span class="math"&gt;\(A\)&lt;/span&gt;的特征向量，将一定可以表示成下面的形式：&lt;/p&gt;
+&lt;div class="math"&gt;$$
+A\nu = \lambda \nu
+$$&lt;/div&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(\lambda\)&lt;/span&gt;为特征向量&lt;span class="math"&gt;\(\vec{v}\)&lt;/span&gt;对应的特征值。特征值分解是将一个矩阵分解为如下形式： &lt;/p&gt;
+&lt;div class="math"&gt;$$
+A=Q\sum Q^{-1}
+$$&lt;/div&gt;
+&lt;p&gt;其中，&lt;span class="math"&gt;\(Q\)&lt;/span&gt;是这个矩阵&lt;span class="math"&gt;\(A\)&lt;/span&gt;的特征向量组成的矩阵，&lt;span class="math"&gt;\(\sum\)&lt;/span&gt;是一个对角矩阵，每一个对角线元素就是一个特征值，里面的特征值是由大到小排列的，这些特征值所对应的特征向量就是描述这个矩阵变化方向（从主要的变化到次要的变化排列）。也就是说矩阵&lt;span class="math"&gt;\(A\)&lt;/span&gt;的信息可以由其特征值和特征向量表示。&lt;/p&gt;
+&lt;h3 id="132"&gt;1.3.2 奇异值与特征值有什么关系&lt;a class="headerlink" href="#132" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;那么奇异值和特征值是怎么对应起来的呢？我们将一个矩阵&lt;span class="math"&gt;\(A\)&lt;/span&gt;的转置乘以&lt;span class="math"&gt;\(A\)&lt;/span&gt;，并对&lt;span class="math"&gt;\(A^TA​\)&lt;/span&gt;求特征值，则有下面的形式：&lt;/p&gt;
+&lt;div class="math"&gt;$$
+(A^TA)V = \lambda V
+$$&lt;/div&gt;
+&lt;p&gt;这里&lt;span class="math"&gt;\(V​\)&lt;/span&gt;就是上面的右奇异向量，另外还有：&lt;/p&gt;
+&lt;div class="math"&gt;$$
+\sigma_i = \sqrt{\lambda_i}, u_i=\frac{1}{\sigma_i}A\mu_i
+$$&lt;/div&gt;
+&lt;p&gt;这里的&lt;span class="math"&gt;\(\sigma​\)&lt;/span&gt;就是奇异值，&lt;span class="math"&gt;\(u​\)&lt;/span&gt;就是上面说的左奇异向量。【证明那个哥们也没给】
+​奇异值&lt;span class="math"&gt;\(\sigma​\)&lt;/span&gt;跟特征值类似，在矩阵&lt;span class="math"&gt;\(\sum​\)&lt;/span&gt;中也是从大到小排列，而且&lt;span class="math"&gt;\(\sigma​\)&lt;/span&gt;的减少特别的快，在很多情况下，前10%甚至1%的奇异值的和就占了全部的奇异值之和的99%以上了。也就是说，我们也可以用前&lt;span class="math"&gt;\(r​\)&lt;/span&gt;（&lt;span class="math"&gt;\(r​\)&lt;/span&gt;远小于&lt;span class="math"&gt;\(m、n​\)&lt;/span&gt;）个的奇异值来近似描述矩阵，即部分奇异值分解：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+A_{m\times n}\approx U_{m \times r}\sum_{r\times r}V_{r \times n}^T
+$$&lt;/div&gt;
+&lt;p&gt;右边的三个矩阵相乘的结果将会是一个接近于&lt;span class="math"&gt;\(A\)&lt;/span&gt;的矩阵，在这儿，&lt;span class="math"&gt;\(r\)&lt;/span&gt;越接近于&lt;span class="math"&gt;\(n\)&lt;/span&gt;，则相乘的结果越接近于&lt;span class="math"&gt;\(A\)&lt;/span&gt;。&lt;/p&gt;
+&lt;h2 id="14"&gt;1.4 概率分布与随机变量&lt;a class="headerlink" href="#14" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="141"&gt;1.4.1 机器学习为什么要使用概率&lt;a class="headerlink" href="#141" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;事件的概率是衡量该事件发生的可能性的量度。虽然在一次随机试验中某个事件的发生是带有偶然性的，但那些可在相同条件下大量重复的随机试验却往往呈现出明显的数量规律。&lt;br /&gt;
+​机器学习除了处理不确定量，也需处理随机量。不确定性和随机性可能来自多个方面，使用概率论来量化不确定性。&lt;br /&gt;&amp;nbsp;​概率论在机器学习中扮演着一个核心角色，因为机器学习算法的设计通常依赖于对数据的概率假设。  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;​  例如在机器学习（Andrew&amp;nbsp;Ng）的课中，会有一个朴素贝叶斯假设就是条件独立的一个例子。该学习算法对内容做出假设，用来分辨电子邮件是否为垃圾邮件。假设无论邮件是否为垃圾邮件，单词x出现在邮件中的概率条件独立于单词y。很明显这个假设不是不失一般性的，因为某些单词几乎总是同时出现。然而，最终结果是，这个简单的假设对结果的影响并不大，且无论如何都可以让我们快速判别垃圾邮件。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="142"&gt;1.4.2 变量与随机变量有什么区别&lt;a class="headerlink" href="#142" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;随机变量&lt;/strong&gt;（random&amp;nbsp;variable）&lt;/p&gt;
+&lt;p&gt;表示随机现象（在一定条件下，并不总是出现相同结果的现象称为随机现象）中各种结果的实值函数（一切可能的样本点）。例如某一时间内公共汽车站等车乘客人数，电话交换台在一定时间内收到的呼叫次数等，都是随机变量的实例。&lt;br /&gt;&amp;nbsp;​随机变量与模糊变量的不确定性的本质差别在于，后者的测定结果仍具有不确定性，即模糊性。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;变量与随机变量的区别：&lt;/strong&gt;&lt;br /&gt;&amp;nbsp;​当变量的取值的概率不是1时,变量就变成了随机变量；当随机变量取值的概率为1时,随机变量就变成了变量。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;比如：&lt;br /&gt;
+​ 当变量&lt;span class="math"&gt;\(x\)&lt;/span&gt;值为100的概率为1的话,那么&lt;span class="math"&gt;\(x=100\)&lt;/span&gt;就是确定了的,不会再有变化,除非有进一步运算.
+​ 当变量&lt;span class="math"&gt;\(x\)&lt;/span&gt;的值为100的概率不为1,比如为50的概率是0.5,为100的概率是0.5,那么这个变量就是会随不同条件而变化的,是随机变量,取到50或者100的概率都是0.5,即50%。  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="143"&gt;1.4.3 随机变量与概率分布的联系&lt;a class="headerlink" href="#143" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;一个随机变量仅仅表示一个可能取得的状态，还必须给定与之相伴的概率分布来制定每个状态的可能性。用来描述随机变量或一簇随机变量的每一个可能的状态的可能性大小的方法，就是 &lt;strong&gt;概率分布(probability distribution)&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;随机变量可以分为离散型随机变量和连续型随机变量。&lt;/p&gt;
+&lt;p&gt;相应的描述其概率分布的函数是 &lt;/p&gt;
+&lt;p&gt;概率质量函数(Probability Mass Function, &lt;span class="caps"&gt;PMF&lt;/span&gt;):描述离散型随机变量的概率分布，通常用大写字母 &lt;span class="math"&gt;\(P\)&lt;/span&gt;表示。&lt;/p&gt;
+&lt;p&gt;概率密度函数(Probability Density Function, &lt;span class="caps"&gt;PDF&lt;/span&gt;):描述连续型随机变量的概率分布，通常用小写字母&lt;span class="math"&gt;\(p\)&lt;/span&gt;表示。&lt;/p&gt;
+&lt;h3 id="144"&gt;1.4.4 离散型随机变量和概率质量函数&lt;a class="headerlink" href="#144" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span class="caps"&gt;PMF&lt;/span&gt;&amp;nbsp;将随机变量能够取得的每个状态映射到随机变量取得该状态的概率。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一般而言，&lt;span class="math"&gt;\(P(x)​\)&lt;/span&gt; 表示时&lt;span class="math"&gt;\(X=x​\)&lt;/span&gt;的概率.&lt;/li&gt;
+&lt;li&gt;有时候为了防止混淆，要明确写出随机变量的名称&lt;span class="math"&gt;\(P(​\)&lt;/span&gt;x&lt;span class="math"&gt;\(=x)​\)&lt;/span&gt; &lt;/li&gt;
+&lt;li&gt;有时候需要先定义一个随机变量，然后制定它遵循的概率分布x服从&lt;span class="math"&gt;\(P(​\)&lt;/span&gt;x​&lt;span class="math"&gt;\()​\)&lt;/span&gt; &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span class="caps"&gt;PMF&lt;/span&gt; 可以同时作用于多个随机变量，即联合概率分布(joint probability distribution) &lt;span class="math"&gt;\(P(X=x,Y=y)\)&lt;/span&gt;*表示 &lt;span class="math"&gt;\(X=x\)&lt;/span&gt;和&lt;span class="math"&gt;\(Y=y\)&lt;/span&gt;同时发生的概率，也可以简写成 &lt;span class="math"&gt;\(P(x,y)\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;如果一个函数&lt;span class="math"&gt;\(P​\)&lt;/span&gt;是随机变量 &lt;span class="math"&gt;\(X​\)&lt;/span&gt; 的 &lt;span class="caps"&gt;PMF&lt;/span&gt;，&amp;nbsp;那么它必须满足如下三个条件&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class="math"&gt;\(P​\)&lt;/span&gt;的定义域必须是的所有可能状态的集合&lt;/li&gt;
+&lt;li&gt;&lt;span class="math"&gt;\(∀x∈​\)&lt;/span&gt;x, &lt;span class="math"&gt;\(0 \leq P(x) \leq 1 ​\)&lt;/span&gt;. &lt;/li&gt;
+&lt;li&gt;&lt;span class="math"&gt;\(∑_{x∈X} P(x)=1\)&lt;/span&gt;. 我们把这一条性质称之为&amp;nbsp;归一化的(normalized)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="145"&gt;1.4.5 连续型随机变量和概率密度函数&lt;a class="headerlink" href="#145" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;如果一个函数&lt;span class="math"&gt;\(p​\)&lt;/span&gt;是x的PDF，那么它必须满足如下几个条件&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class="math"&gt;\(p\)&lt;/span&gt;的定义域必须是 xx&amp;nbsp;的所有可能状态的集合。&lt;/li&gt;
+&lt;li&gt;&lt;span class="math"&gt;\(∀x∈X,p(x)≥0\)&lt;/span&gt;. 注意，我们并不要求&lt;span class="math"&gt;\( p(x)≤1\)&lt;/span&gt;，因为此处 &lt;span class="math"&gt;\(p(x)\)&lt;/span&gt;不是表示的对应此状态具体的概率，而是概率的一个相对大小(密度)。具体的概率，需要积分去求。&lt;/li&gt;
+&lt;li&gt;&lt;span class="math"&gt;\(∫p(x)dx=1\)&lt;/span&gt;,&amp;nbsp;积分下来，总和还是1，概率之和还是1.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;注：&lt;span class="caps"&gt;PDF&lt;/span&gt;&lt;span class="math"&gt;\(p(x)\)&lt;/span&gt;并没有直接对特定的状态给出概率，给出的是密度，相对的，它给出了落在面积为 &lt;span class="math"&gt;\(δx\)&lt;/span&gt;的无线小的区域内的概率为&lt;span class="math"&gt;\( p(x)δx\)&lt;/span&gt;. 由此，我们无法求得具体某个状态的概率，我们可以求得的是 某个状态 &lt;span class="math"&gt;\(x\)&lt;/span&gt; 落在 某个区间&lt;span class="math"&gt;\([a,b]\)&lt;/span&gt;内的概率为&lt;span class="math"&gt;\( \int_{a}^{b}p(x)dx\)&lt;/span&gt;.&lt;/p&gt;
+&lt;h3 id="146"&gt;1.4.6 举例理解条件概率&lt;a class="headerlink" href="#146" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;条件概率公式如下：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+P(A|B) = P(A\cap B) / P(B)
+$$&lt;/div&gt;
+&lt;p&gt;
+说明：在同一个样本空间&lt;span class="math"&gt;\(\Omega\)&lt;/span&gt;中的事件或者子集&lt;span class="math"&gt;\(A\)&lt;/span&gt;与&lt;span class="math"&gt;\(B\)&lt;/span&gt;，如果随机从&lt;span class="math"&gt;\(\Omega\)&lt;/span&gt;中选出的一个元素属于&lt;span class="math"&gt;\(B\)&lt;/span&gt;，那么下一个随机选择的元素属于&lt;span class="math"&gt;\(A\)&lt;/span&gt; 的概率就定义为在&lt;span class="math"&gt;\(B\)&lt;/span&gt;的前提下&lt;span class="math"&gt;\(A\)&lt;/span&gt;的条件概率。条件概率文氏图示意如图1.1所示。&lt;br /&gt;
+&lt;img alt="条件概率" src="E:/DeepLearning-500-questions/ch01_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/img/ch1/conditional_probability.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;图1.1&amp;nbsp;条件概率文氏图示意&lt;/p&gt;
+&lt;p&gt;根据文氏图，可以很清楚地看到在事件B发生的情况下，事件A发生的概率就是&lt;span class="math"&gt;\(P(A\bigcap B)\)&lt;/span&gt;除以&lt;span class="math"&gt;\(P(B)\)&lt;/span&gt;。&lt;br /&gt;
+​举例：一对夫妻有两个小孩，已知其中一个是女孩，则另一个是女孩子的概率是多少？（面试、笔试都碰到过）&lt;br /&gt;
+​&lt;strong&gt;穷举法&lt;/strong&gt;：已知其中一个是女孩，那么样本空间为男女，女女，女男，则另外一个仍然是女生的概率就是1/3。&lt;br /&gt;
+​&lt;strong&gt;条件概率法&lt;/strong&gt;：&lt;span class="math"&gt;\(P(女|女)=P(女女)/P(女)\)&lt;/span&gt;,夫妻有两个小孩，那么它的样本空间为女女，男女，女男，男男，则&lt;span class="math"&gt;\(P(女女)\)&lt;/span&gt;为1/4，&lt;span class="math"&gt;\(P（女）= 1-P(男男)=3/4\)&lt;/span&gt;,所以最后&lt;span class="math"&gt;\(1/3\)&lt;/span&gt;。&lt;br /&gt;&amp;nbsp;这里大家可能会误解，男女和女男是同一种情况，但实际上类似姐弟和兄妹是不同情况。 &lt;/p&gt;
+&lt;h3 id="147"&gt;1.4.7 联合概率与边缘概率联系区别&lt;a class="headerlink" href="#147" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;区别：&lt;/strong&gt;&lt;br /&gt;
+​联合概率：联合概率指类似于&lt;span class="math"&gt;\(P(X=a,Y=b)\)&lt;/span&gt;这样，包含多个条件，且所有条件同时成立的概率。联合概率是指在多元的概率分布中多个随机变量分别满足各自条件的概率。&lt;br /&gt;
+​边缘概率：边缘概率是某个事件发生的概率，而与其它事件无关。边缘概率指类似于&lt;span class="math"&gt;\(P(X=a)\)&lt;/span&gt;，&lt;span class="math"&gt;\(P(Y=b)\)&lt;/span&gt;这样，仅与单个随机变量有关的概率。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;联系：&lt;/strong&gt;&lt;br /&gt;&amp;nbsp;​联合分布可求边缘分布，但若只知道边缘分布，无法求得联合分布。  &lt;/p&gt;
+&lt;h3 id="148"&gt;1.4.8 条件概率的链式法则&lt;a class="headerlink" href="#148" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;由条件概率的定义，可直接得出下面的乘法公式：&lt;br /&gt;
+​乘法公式 设&lt;span class="math"&gt;\(A, B\)&lt;/span&gt;是两个事件，并且&lt;span class="math"&gt;\(P(A) &amp;gt; 0\)&lt;/span&gt;,&amp;nbsp;则有 
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+P(AB) = P(B|A)P(A)
+$$&lt;/div&gt;
+&lt;p&gt;
+推广 
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+P(ABC)=P(C|AB)P(B|A)P(A)
+$$&lt;/div&gt;
+&lt;p&gt;
+一般地，用归纳法可证：若&lt;span class="math"&gt;\(P(A_1A_2...A_n)&amp;gt;0\)&lt;/span&gt;，则有
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+P(A_1A_2...A_n)=P(A_n|A_1A_2...A_{n-1})P(A_{n-1}|A_1A_2...A_{n-2})...P(A_2|A_1)P(A_1)
+=P(A_1)\prod_{i=2}^{n}P(A_i|A_1A_2...A_{i-1})
+$$&lt;/div&gt;
+&lt;p&gt;
+任何多维随机变量联合概率分布，都可以分解成只有一个变量的条件概率相乘形式。 &lt;/p&gt;
+&lt;h3 id="149"&gt;1.4.9 独立性和条件独立性&lt;a class="headerlink" href="#149" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;独立性&lt;/strong&gt;
+​两个随机变量&lt;span class="math"&gt;\(x\)&lt;/span&gt;和&lt;span class="math"&gt;\(y\)&lt;/span&gt;，概率分布表示成两个因子乘积形式，一个因子只包含&lt;span class="math"&gt;\(x\)&lt;/span&gt;，另一个因子只包含&lt;span class="math"&gt;\(y\)&lt;/span&gt;，两个随机变量相互独立(independent)。&lt;br /&gt;
+​条件有时为不独立的事件之间带来独立，有时也会把本来独立的事件，因为此条件的存在，而失去独立性。&lt;br /&gt;
+​举例：&lt;span class="math"&gt;\(P(XY)=P(X)P(Y)\)&lt;/span&gt;, 事件&lt;span class="math"&gt;\(X\)&lt;/span&gt;和事件&lt;span class="math"&gt;\(Y\)&lt;/span&gt;独立。此时给定&lt;span class="math"&gt;\(Z\)&lt;/span&gt;，
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+P(X,Y|Z) \not = P(X|Z)P(Y|Z)
+$$&lt;/div&gt;
+&lt;p&gt;
+事件独立时，联合概率等于概率的乘积。这是一个非常好的数学性质，然而不幸的是，无条件的独立是十分稀少的，因为大部分情况下，事件之间都是互相影响的。 &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;条件独立性&lt;/strong&gt;&lt;br /&gt;
+​给定&lt;span class="math"&gt;\(Z\)&lt;/span&gt;的情况下,&lt;span class="math"&gt;\(X\)&lt;/span&gt;和&lt;span class="math"&gt;\(Y\)&lt;/span&gt;条件独立，当且仅当
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+X\bot Y|Z \iff P(X,Y|Z) = P(X|Z)P(Y|Z)
+$$&lt;/div&gt;
+&lt;p&gt;
+&lt;span class="math"&gt;\(X\)&lt;/span&gt;和&lt;span class="math"&gt;\(Y\)&lt;/span&gt;的关系依赖于&lt;span class="math"&gt;\(Z\)&lt;/span&gt;，而不是直接产生。  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;举例&lt;/strong&gt;定义如下事件：&lt;br /&gt;
+&lt;span class="math"&gt;\(X\)&lt;/span&gt;：明天下雨；&lt;br /&gt;
+&lt;span class="math"&gt;\(Y\)&lt;/span&gt;：今天的地面是湿的；&lt;br /&gt;
+&lt;span class="math"&gt;\(Z\)&lt;/span&gt;：今天是否下雨；&lt;br /&gt;
+&lt;span class="math"&gt;\(Z\)&lt;/span&gt;事件的成立，对&lt;span class="math"&gt;\(X\)&lt;/span&gt;和&lt;span class="math"&gt;\(Y\)&lt;/span&gt;均有影响，然而，在&lt;span class="math"&gt;\(Z\)&lt;/span&gt;事件成立的前提下，今天的地面情况对明天是否下雨没有影响。 &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="15"&gt;1.5 常见概率分布&lt;a class="headerlink" href="#15" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="151-bernoulli"&gt;1.5.1 Bernoulli分布&lt;a class="headerlink" href="#151-bernoulli" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Bernoulli分布&lt;/strong&gt;是单个二值随机变量分布, 单参数&lt;span class="math"&gt;\(\phi​\)&lt;/span&gt;∈[0,1]控制,&lt;span class="math"&gt;\(\phi​\)&lt;/span&gt;给出随机变量等于1的概率.&amp;nbsp;主要性质有: 
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+\begin{align*}
+P(x=1) &amp;amp;= \phi \\
+P(x=0) &amp;amp;= 1-\phi  \\
+P(x=x) &amp;amp;= \phi^x(1-\phi)^{1-x} \\
+\end{align*}
+$$&lt;/div&gt;
+&lt;p&gt;
+其期望和方差为：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+\begin{align*}
+E_x[x] &amp;amp;= \phi \\
+Var_x(x) &amp;amp;= \phi{(1-\phi)}
+\end{align*}
+$$&lt;/div&gt;
+&lt;p&gt;
+&lt;strong&gt;Multinoulli分布&lt;/strong&gt;也叫&lt;strong&gt;范畴分布&lt;/strong&gt;, 是单个&lt;em&gt;k&lt;/em&gt;值随机分布,经常用来表示&lt;strong&gt;对象分类的分布&lt;/strong&gt;. 其中&lt;span class="math"&gt;\(k\)&lt;/span&gt;是有限值.Multinoulli分布由向量&lt;span class="math"&gt;\(\vec{p}\in[0,1]^{k-1}\)&lt;/span&gt;参数化,每个分量&lt;span class="math"&gt;\(p_i\)&lt;/span&gt;表示第&lt;span class="math"&gt;\(i\)&lt;/span&gt;个状态的概率, 且&lt;span class="math"&gt;\(p_k=1-1^Tp​\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;适用范围&lt;/strong&gt;: &lt;strong&gt;伯努利分布&lt;/strong&gt;适合对&lt;strong&gt;离散型&lt;/strong&gt;随机变量建模.&lt;/p&gt;
+&lt;h3 id="152"&gt;1.5.2 高斯分布&lt;a class="headerlink" href="#152" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;高斯也叫正态分布(Normal Distribution), 概率度函数如下:&lt;br /&gt;
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+N(x;\mu,\sigma^2) = \sqrt{\frac{1}{2\pi\sigma^2}}exp\left ( -\frac{1}{2\sigma^2}(x-\mu)^2 \right )
+$$&lt;/div&gt;
+&lt;p&gt;
+其中, &lt;span class="math"&gt;\(\mu​\)&lt;/span&gt;和&lt;span class="math"&gt;\(\sigma​\)&lt;/span&gt;分别是均值和方差, 中心峰值x坐标由&lt;span class="math"&gt;\(\mu​\)&lt;/span&gt;给出, 峰的宽度受&lt;span class="math"&gt;\(\sigma​\)&lt;/span&gt;控制, 最大点在&lt;span class="math"&gt;\(x=\mu​\)&lt;/span&gt;处取得, 拐点为&lt;span class="math"&gt;\(x=\mu\pm\sigma​\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;正态分布中，±1&lt;span class="math"&gt;\(\sigma\)&lt;/span&gt;、±2&lt;span class="math"&gt;\(\sigma\)&lt;/span&gt;、±3&lt;span class="math"&gt;\(\sigma\)&lt;/span&gt;下的概率分别是68.3%、95.5%、99.73%，这3个数最好记住。 &lt;/p&gt;
+&lt;p&gt;此外, 令&lt;span class="math"&gt;\(\mu=0,\sigma=1​\)&lt;/span&gt;高斯分布即简化为标准正态分布: 
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+N(x;\mu,\sigma^2) = \sqrt{\frac{1}{2\pi}}exp\left ( -\frac{1}{2}x^2 \right )
+$$&lt;/div&gt;
+&lt;p&gt;
+对概率密度函数高效求值: 
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+N(x;\mu,\beta^{-1})=\sqrt{\frac{\beta}{2\pi}}exp\left(-\frac{1}{2}\beta(x-\mu)^2\right)
+$$&lt;/div&gt;
+&lt;p&gt;其中，&lt;span class="math"&gt;\(\beta=\frac{1}{\sigma^2}\)&lt;/span&gt;通过参数&lt;span class="math"&gt;\(\beta∈（0，\infty）​\)&lt;/span&gt;来控制分布精度。&lt;/p&gt;
+&lt;h3 id="153"&gt;1.5.3 何时采用正态分布&lt;a class="headerlink" href="#153" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;问: 何时采用正态分布? 
+答: 缺乏实数上分布的先验知识, 不知选择何种形式时, 默认选择正态分布总是不会错的,&amp;nbsp;理由如下: &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;中心极限定理告诉我们, 很多独立随机变量均近似服从正态分布, 现实中很多复杂系统都可以被建模成正态分布的噪声,&amp;nbsp;即使该系统可以被结构化分解. &lt;/li&gt;
+&lt;li&gt;正态分布是具有相同方差的所有概率分布中, 不确定性最大的分布, 换句话说,&amp;nbsp;正态分布是对模型加入先验知识最少的分布.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;正态分布的推广: 
+正态分布可以推广到&lt;span class="math"&gt;\(R^n\)&lt;/span&gt;空间, 此时称为&lt;strong&gt;多位正态分布&lt;/strong&gt;, 其参数是一个正定对称矩阵&lt;span class="math"&gt;\(\Sigma​\)&lt;/span&gt;: 
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+N(x;\vec\mu,\Sigma)=\sqrt{\frac{1}{(2\pi)^ndet(\Sigma)}}exp\left(-\frac{1}{2}(\vec{x}-\vec{\mu})^T\Sigma^{-1}(\vec{x}-\vec{\mu})\right)
+$$&lt;/div&gt;
+&lt;p&gt;
+对多为正态分布概率密度高效求值: 
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+N(x;\vec{\mu},\vec\beta^{-1}) = \sqrt{det(\vec\beta)}{(2\pi)^n}exp\left(-\frac{1}{2}(\vec{x}-\vec\mu)^T\beta(\vec{x}-\vec\mu)\right)
+$$&lt;/div&gt;
+&lt;p&gt;
+此处，&lt;span class="math"&gt;\(\vec\beta\)&lt;/span&gt;是一个精度矩阵。&lt;/p&gt;
+&lt;h3 id="154"&gt;1.5.4 指数分布&lt;a class="headerlink" href="#154" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;深度学习中, 指数分布用来描述在&lt;span class="math"&gt;\(x=0​\)&lt;/span&gt;点处取得边界点的分布,&amp;nbsp;指数分布定义如下:
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+p(x;\lambda)=\lambda I_{x\geq 0}exp(-\lambda{x})
+$$&lt;/div&gt;
+&lt;p&gt;
+指数分布用指示函数&lt;span class="math"&gt;\(I_{x\geq 0}​\)&lt;/span&gt;来使&lt;span class="math"&gt;\(x​\)&lt;/span&gt;取负值时的概率为零。&lt;/p&gt;
+&lt;h3 id="155-laplace"&gt;1.5.5 Laplace 分布&lt;a class="headerlink" href="#155-laplace" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;一个联系紧密的概率分布是 Laplace 分布（Laplace distribution），它允许我们在任意一点 &lt;span class="math"&gt;\(\mu\)&lt;/span&gt;处设置概率质量的峰值
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+Laplace(x;\mu;\gamma)=\frac{1}{2\gamma}exp\left(-\frac{|x-\mu|}{\gamma}\right)
+$$&lt;/div&gt;
+&lt;h3 id="156-dirac"&gt;1.5.6 Dirac分布和经验分布&lt;a class="headerlink" href="#156-dirac" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Dirac分布可保证概率分布中所有质量都集中在一个点上. Diract分布的狄拉克&lt;span class="math"&gt;\(\delta​\)&lt;/span&gt;函数(也称为&lt;strong&gt;单位脉冲函数&lt;/strong&gt;)定义如下: 
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+p(x)=\delta(x-\mu), x\neq \mu
+$$&lt;/div&gt;
+&lt;div class="math"&gt;$$
+\int_{a}^{b}\delta(x-\mu)dx = 1, a &amp;lt; \mu &amp;lt; b
+$$&lt;/div&gt;
+&lt;p&gt;Dirac 分布经常作为 经验分布（empirical&amp;nbsp;distribution）的一个组成部分出现
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+\hat{p}(\vec{x})=\frac{1}{m}\sum_{i=1}^{m}\delta(\vec{x}-{\vec{x}}^{(i)})
+$$&lt;/div&gt;
+&lt;p&gt;
+, 其中, m个点&lt;span class="math"&gt;\(x^{1},...,x^{m}\)&lt;/span&gt;是给定的数据集, &lt;strong&gt;经验分布&lt;/strong&gt;将概率密度&lt;span class="math"&gt;\(\frac{1}{m}​\)&lt;/span&gt;赋给了这些点.&lt;/p&gt;
+&lt;p&gt;当我们在训练集上训练模型时, 可以认为从这个训练集上得到的经验分布指明了&lt;strong&gt;采样来源&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;适用范围&lt;/strong&gt;: 狄拉克δ函数适合对&lt;strong&gt;连续型&lt;/strong&gt;随机变量的经验分布.&lt;/p&gt;
+&lt;blockquote&gt;&lt;/blockquote&gt;
+&lt;h2 id="16"&gt;1.6 期望、方差、协方差、相关系数&lt;a class="headerlink" href="#16" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="161"&gt;1.6.1 期望&lt;a class="headerlink" href="#161" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;在概率论和统计学中，数学期望（或均值，亦简称期望）是试验中每次可能结果的概率乘以其结果的总和。它反映随机变量平均取值的大小。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;线性运算： &lt;span class="math"&gt;\(E(ax+by+c) =&amp;nbsp;aE(x)+bE(y)+c\)&lt;/span&gt;  &lt;/li&gt;
+&lt;li&gt;推广形式： &lt;span class="math"&gt;\(E(\sum_{k=1}^{n}{a_ix_i+c}) =&amp;nbsp;\sum_{k=1}^{n}{a_iE(x_i)+c}\)&lt;/span&gt; &lt;/li&gt;
+&lt;li&gt;函数期望：设&lt;span class="math"&gt;\(f(x)\)&lt;/span&gt;为&lt;span class="math"&gt;\(x\)&lt;/span&gt;的函数，则&lt;span class="math"&gt;\(f(x)\)&lt;/span&gt;的期望为&lt;ul&gt;
+&lt;li&gt;离散函数： &lt;span class="math"&gt;\(E(f(x))=\sum_{k=1}^{n}{f(x_k)P(x_k)}\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;连续函数： &lt;span class="math"&gt;\(E(f(x))=\int_{-\infty}^{+\infty}{f(x)p(x)dx}\)&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;函数的期望大于等于期望的函数（Jensen不等式），即&lt;span class="math"&gt;\(E(f(x))\geqslant&amp;nbsp;f(E(x))\)&lt;/span&gt;  &lt;/li&gt;
+&lt;li&gt;一般情况下，乘积的期望不等于期望的乘积。  &lt;/li&gt;
+&lt;li&gt;如果&lt;span class="math"&gt;\(X\)&lt;/span&gt;和&lt;span class="math"&gt;\(Y\)&lt;/span&gt;相互独立，则&lt;span class="math"&gt;\(E(xy)=E(x)E(y)​\)&lt;/span&gt;。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="162"&gt;1.6.2 方差&lt;a class="headerlink" href="#162" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;概率论中方差用来度量随机变量和其数学期望（即均值）之间的偏离程度。方差是一种特殊的期望。定义为：&lt;/p&gt;
+&lt;div class="math"&gt;$$
+Var(x) = E((x-E(x))^2)
+$$&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;方差性质：  &lt;/p&gt;
+&lt;p&gt;1）&lt;span class="math"&gt;\(Var(x) = E(x^2) -E(x)^2\)&lt;/span&gt;&lt;br /&gt;
+2）常数的方差为0;&lt;br /&gt;
+3）方差不满足线性性质;&lt;br /&gt;
+4）如果&lt;span class="math"&gt;\(X\)&lt;/span&gt;和&lt;span class="math"&gt;\(Y\)&lt;/span&gt;相互独立, &lt;span class="math"&gt;\(Var(ax+by)=a^2Var(x)+b^2Var(y)\)&lt;/span&gt;   &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="163"&gt;1.6.3 协方差&lt;a class="headerlink" href="#163" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;协方差是衡量两个变量线性相关性强度及变量尺度。&amp;nbsp;两个随机变量的协方差定义为：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+Cov(x,y)=E((x-E(x))(y-E(y)))
+$$&lt;/div&gt;
+&lt;p&gt;方差是一种特殊的协方差。当&lt;span class="math"&gt;\(X=Y\)&lt;/span&gt;时，&lt;span class="math"&gt;\(Cov(x,y)=Var(x)=Var(y)\)&lt;/span&gt;。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;协方差性质：  &lt;/p&gt;
+&lt;p&gt;1）独立变量的协方差为0。&lt;br /&gt;&amp;nbsp;2）协方差计算公式：&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="math"&gt;$$
+Cov(\sum_{i=1}^{m}{a_ix_i}, \sum_{j=1}^{m}{b_jy_j}) = \sum_{i=1}^{m} \sum_{j=1}^{m}{a_ib_jCov(x_iy_i)}
+$$&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;3）特殊情况：&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="math"&gt;$$
+Cov(a+bx, c+dy) = bdCov(x, y)
+$$&lt;/div&gt;
+&lt;h3 id="164"&gt;1.6.4 相关系数&lt;a class="headerlink" href="#164" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;相关系数是研究变量之间线性相关程度的量。两个随机变量的相关系数定义为：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+Corr(x,y) = \frac{Cov(x,y)}{\sqrt{Var(x)Var(y)}}
+$$&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;相关系数的性质：&lt;br /&gt;
+1）有界性。相关系数的取值范围是 [-1,1]，可以看成无量纲的协方差。&lt;br /&gt;&amp;nbsp;2）值越接近1，说明两个变量正相关性（线性）越强。越接近-1，说明负相关性越强，当为0时，表示两个变量没有相关性。  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="_2"&gt;参考文献&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;[1]Ian，Goodfellow，Yoshua，Bengio，Aaron&amp;#8230;深度学习[M]，人民邮电出版，2017&lt;/p&gt;
+&lt;p&gt;[2]周志华.机器学习[M].清华大学出版社，2016.&lt;/p&gt;
+&lt;p&gt;[3]同济大学数学系.高等数学（第七版）[M]，高等教育出版社，2014.&lt;/p&gt;
+&lt;p&gt;[4]盛骤，试式千，潘承毅等编.&amp;nbsp;概率论与数理统计（第4版）[M]，高等教育出版社，2008&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><category term="machine learning"></category></entry><entry><title>The difference of SVM and LR model</title><link href="https://csbwang.github.io/tdosalm" rel="alternate"></link><published>2018-01-06T00:00:00+08:00</published><updated>2018-01-06T00:00:00+08:00</updated><author><name>warmber</name></author><id>tag:csbwang.github.io,2018-01-06:tdosalm</id><summary type="html">&lt;h1 id="svmlr"&gt;SVM和LR的区别&lt;a class="headerlink" href="#svmlr" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;样本点对模型的作用不用&lt;/strong&gt;，SVM中只有支持向量才对模型影响，而LR模型中每个样本都会对模型产生影响。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;损失函数不同&lt;/strong&gt;，SVM是hinge损失函数，而LR模型是log损失函数。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;理论基础不同&lt;/strong&gt;，SVM模型基于严格的理论推导（无约束优化问题 -&amp;gt; 等式约束优化问题 -&amp;gt; 不等式约束优化(KKT条件) -&amp;gt;&amp;nbsp;SMO算法），而LR模型基于统计理论。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;输出不同&lt;/strong&gt;，LR模型输出的是每个样本点属于不同类别的概率值，而SVM不同。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;过拟合处理&lt;/strong&gt;，SVM模型包含L2正则化，LR模型需要单独添加正则化项。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;非线性分类问题处理&lt;/strong&gt;，SVM模型可以通过核函数将非线性问题转化为线性问题进行处理，LR模型需要手动进行特征转换等来处理。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;计算复杂度&lt;/strong&gt;，对于大数据集，SVM模型计算复杂度高，LR模型简单。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;扩展性&lt;/strong&gt;，SVM模型扩展后可解决回归模型，LR模型不行。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;可解释性&lt;/strong&gt;，LR模型基于统计模型，可解释性强。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Normalization&lt;/strong&gt;，SVM模型依赖数据表达的距离测度，需要对数据先做Normalization（保证不同特征维度在距离上的同等重要性），而LR模型不需要。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;参考链接1：http://www.cnblogs.com/zhizhan/p/5038747.html&lt;/p&gt;
+&lt;p&gt;参考链接2：http://www.jianshu.com/p/f86de852ee96&lt;/p&gt;</summary><category term="machine learning"></category></entry></feed>
