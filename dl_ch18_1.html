@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="warmber" />
+        <meta name="copyright" content="warmber" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="machine learning, 深度学习500问, " />
+
+<meta property="og:title" content="第十八章_后端架构选型、离线及实时计算 "/>
+<meta property="og:url" content="https://csbwang.github.io/dl_ch18_1" />
+<meta property="og:description" content="" />
+<meta property="og:site_name" content="warmber&#39;s Blog" />
+<meta property="og:article:author" content="warmber" />
+<meta property="og:article:published_time" content="2019-07-06T00:00:00+08:00" />
+<meta property="" content="2019-07-06T00:00:00+08:00" />
+<meta name="twitter:title" content="第十八章_后端架构选型、离线及实时计算 ">
+<meta name="twitter:description" content="">
+
+        <title>第十八章_后端架构选型、离线及实时计算  · warmber&#39;s Blog
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://csbwang.github.io/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://csbwang.github.io/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://csbwang.github.io/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://csbwang.github.io/theme/css/custom.css" media="screen">
+        <link rel="shortcut icon" href="https://csbwang.github.io/theme/images/favicon.ico" type="image/x-icon" type="image/png" />
+        <link rel="icon" href="https://csbwang.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
+        <link rel="apple-touch-icon" href="https://csbwang.github.io/theme/images/apple-touch-icon.png"  type="image/png" />
+        <link rel="apple-touch-icon" sizes="57x57" href="https://csbwang.github.io/theme/images/apple-touch-icon-57x57.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="https://csbwang.github.io/theme/images/apple-touch-icon-72x72.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="https://csbwang.github.io/theme/images/apple-touch-icon-76x76.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="https://csbwang.github.io/theme/images/apple-touch-icon-114x114.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="https://csbwang.github.io/theme/images/apple-touch-icon-120x120.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="https://csbwang.github.io/theme/images/apple-touch-icon-144x144.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="https://csbwang.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://csbwang.github.io/"><span class=site-name>warmber's Blog</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://csbwang.github.io">Home</a></li>
+                            <li ><a href="https://csbwang.github.io/categories.html">Categories</a></li>
+                            <li ><a href="https://csbwang.github.io/tags.html">Tags</a></li>
+                            <li ><a href="https://csbwang.github.io/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="https://csbwang.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://csbwang.github.io/dl_ch18_1"> 第十八章_后端架构选型、离线及实时计算  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc">
+<ul>
+<li><a href="#_">第十八章_后端架构选型、离线及实时计算</a><ul>
+<li><a href="#181">18.1 为什么需要分布式计算？</a></li>
+<li><a href="#182">18.2 目前有哪些深度学习分布式计算框架？</a><ul>
+<li><a href="#1821-paddlepaddle">18.2.1 PaddlePaddle</a></li>
+<li><a href="#1822-deeplearning4j">18.2.2 Deeplearning4j</a></li>
+<li><a href="#1823-mahout">18.2.3 Mahout</a></li>
+<li><a href="#1824-spark-mlllib">18.2.4 Spark MLllib</a></li>
+<li><a href="#1825-ray">18.2.5 Ray</a></li>
+<li><a href="#1826-spark-stream">18.2.6 Spark stream</a></li>
+<li><a href="#1827-horovod">18.2.7 Horovod</a></li>
+<li><a href="#1828-bigdl">18.2.8 BigDL</a></li>
+<li><a href="#1829-petastorm">18.2.9 Petastorm</a></li>
+<li><a href="#18210-tensorflowonspark">18.2.10 TensorFlowOnSpark</a></li>
+</ul>
+</li>
+<li><a href="#183">18.3 如何选择合适的分布式计算框架进行模型训练？</a></li>
+<li><a href="#184">18.4 如何进行实时计算？</a><ul>
+<li><a href="#1841">18.4.1 什么是实时流计算？</a></li>
+<li><a href="#1842">18.4.2 实时流计算过程</a></li>
+</ul>
+</li>
+<li><a href="#185">18.5 如何进行离线计算？</a></li>
+<li><a href="#186">18.6 如何使用分布式框架提高模型训练速度？</a></li>
+<li><a href="#187">18.7 深度学习分布式计算框架如何在移动互联网中应用？</a></li>
+<li><a href="#188">18.8 如何在个性化推荐中应用深度学习分布式框架？</a></li>
+<li><a href="#189">18.9 如何评价个性化推荐系统的效果？</a><ul>
+<li><a href="#1891-precision-recall">18.9.1 准确率与召回率（Precision <span class="amp">&amp;</span> Recall）</a></li>
+<li><a href="#1892-f-measure">18.9.2 综合评价指标（F-Measure）</a></li>
+<li><a href="#1893-e">18.9.3 E值</a></li>
+<li><a href="#1894-average-precision">18.9.4 平均正确率（Average Precision）</a></li>
+</ul>
+</li>
+<li><a href="#1810">18.10 参考文献</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+            
+<h1 id="_">第十八章_后端架构选型、离线及实时计算<a class="headerlink" href="#_" title="Permanent link">¶</a></h1>
+<div class="highlight"><pre><span></span>Markdown Revision 1;
+Date: 2018/11/11
+Editor: 梁志成
+Contact: superzhicheng@foxmail.com
+</pre></div>
+<h2 id="181">18.1 为什么需要分布式计算？<a class="headerlink" href="#181" title="Permanent link">¶</a></h2>
+<p>  在这个数据爆炸的时代，产生的数据量不断地在攀升，从GB,<span class="caps">TB</span>,<span class="caps">PB</span>,<span class="caps">ZB</span>.挖掘其中数据的价值也是企业在不断地追求的终极目标。但是要想对海量的数据进行挖掘，首先要考虑的就是海量数据的存储问题，比如Tb量级的数据。</p>
+<p>  谈到数据的存储，则不得不说的是磁盘的数据读写速度问题。早在上个世纪90年代初期，普通硬盘的可以存储的容量大概是1G左右，硬盘的读取速度大概为4.<span class="caps">4MB</span>/s.读取一张硬盘大概需要5分钟时间，但是如今硬盘的容量都在1TB左右了,相比扩展了近千倍。但是硬盘的读取速度大概是100MB/s。读完一个硬盘所需要的时间大概是2.5个小时。所以如果是基于TB级别的数据进行分析的话，光硬盘读取完数据都要好几天了，更谈不上计算分析了。那么该如何处理大数据的存储，计算分析呢？</p>
+<p>  一个很简单的减少数据读写时间的方法就是同时从多个硬盘上读写数据，比如，如果我们有100个硬盘，每个硬盘存储1%的数据 ，并行读取，那么不到两分钟就可以完成之前需要2.5小时的数据读写任务了。这就是大数据中的分布式存储的模型。当然实现分布式存储还需要解决很多问题，比如硬件故障的问题，使用多台主机进行分布式存储时，若主机故障，会出现数据丢失的问题，所以有了副本机制：系统中保存数据的副本。一旦有系统发生故障，就可以使用另外的副本进行替换（著名的RAID冗余磁盘阵列就是按这个原理实现的）。其次比如一个很大的文件如何进行拆分存储，读取拆分以后的文件如何进行校验都是要考虑的问题。比如我们使用Hadoop中的HDFS也面临这个问题，只是框架给我们实现了这些问题的解决办法，开发中开发者不用考虑这些问题，底层框架已经实现了封装。</p>
+<p>  同样假如有一个10TB的文件，我们要统计其中某个关键字的出现次数，传统的做法是遍历整个文件，然后统计出关键字的出现次数，这样效率会特别特别低。基于分布式存储以后，数据被分布式存储在不同的服务器上，那么我们就可以使用分布式计算框架（比如MapReduce,Spark等）来进行并行计算（或者说是分布式计算），即：每个服务器上分别统计自己存储的数据中关键字出现的次数，最后进行一次汇总，那么假如数据分布在100台服务器上，即同时100台服务器同时进行关键字统计工作，效率一下子可以提高几十倍。</p>
+<h2 id="182">18.2 目前有哪些深度学习分布式计算框架？<a class="headerlink" href="#182" title="Permanent link">¶</a></h2>
+<h3 id="1821-paddlepaddle">18.2.1 PaddlePaddle<a class="headerlink" href="#1821-paddlepaddle" title="Permanent link">¶</a></h3>
+<p>  PaddlePaddle【1】是百度开源的一个深度学习平台。PaddlePaddle为深度学习研究人员提供了丰富的API，可以轻松地完成神经网络配置，模型训练等任务。 
+官方文档中简易介绍了如何使用框架在
+- 线性回归
+- 识别数字
+- 图像分类
+- 词向量
+- 个性化推荐
+- 情感分析
+- 语义角色标注
+- 机器翻译</p>
+<p>等方面的应用</p>
+<p>  Github地址：https://github.com/PaddlePaddle/Paddle</p>
+<h3 id="1822-deeplearning4j">18.2.2 Deeplearning4j<a class="headerlink" href="#1822-deeplearning4j" title="Permanent link">¶</a></h3>
+<p>  DeepLearning4J（<span class="caps">DL4J</span>）【2】是一套基于Java语言的神经网络工具包，可以构建、定型和部署神经网络。DL4J与Hadoop和Spark集成，支持分布式CPU和GPU。</p>
+<p>  Deeplearning4j包括了分布式、多线程的深度学习框架，以及普通的单线程深度学习框架。定型过程以集群进行，也就是说，Deeplearning4j可以快速处理大量数据。Deeplearning4j在开放堆栈中作为模块组件的功能，使之成为为微服务架构打造的深度学习框架。</p>
+<p>  Deeplearning4j从各类浅层网络出发，设计深层神经网络。这一灵活性使用户可以根据所需，在分布式、生产级、能够在分布式CPU或GPU的基础上与Spark和Hadoop协同工作的框架内，整合受限玻尔兹曼机、其他自动编码器、卷积网络或递归网络。</p>
+<p>  Deeplearning4j在已建立的各个库及其在系统整体中的所处位置</p>
+<p><img alt="Deeplearning4j" src="./img/18-2-2.png"/></p>
+<p>  Github地址：https://github.com/deeplearning4j/deeplearning4j</p>
+<h3 id="1823-mahout">18.2.3 Mahout<a class="headerlink" href="#1823-mahout" title="Permanent link">¶</a></h3>
+<p>  Mahout【3】是基于Hadoop的机器学习和数据挖掘的一个分布式框架。Mahout用MapReduce实现了部分数据挖掘算法，解决了并行挖掘的问题。</p>
+<p>  Mahout包含许多实现，包括聚类、分类、推荐过滤、频繁子项挖掘等。</p>
+<p>  Mahout算法库：</p>
+<p><img alt="Mahout" src="./img/18-2-3-1.png"/></p>
+<p>  Mahout应用场景：</p>
+<p><img alt="Mahout" src="./img/18-2-3-2.png"/></p>
+<p>  Github地址：https://github.com/apache/mahout</p>
+<h3 id="1824-spark-mlllib">18.2.4 Spark MLllib<a class="headerlink" href="#1824-spark-mlllib" title="Permanent link">¶</a></h3>
+<p>  MLlib(Machine Learnig lib) 【4】是Spark对常用的机器学习算法的实现库，同时包括相关的测试和数据生成器。</p>
+<p>  MLlib是MLBase一部分，其中MLBase分为四部分：MLlib、<span class="caps">MLI</span>、<span class="caps">ML</span> Optimizer和MLRuntime。
+- <span class="caps">ML</span> Optimizer会选择它认为最适合的已经在内部实现好了的机器学习算法和相关参数，来处理用户输入的数据，并返回模型或别的帮助分析的结果；
+- <span class="caps">MLI</span> 是一个进行特征抽取和高级ML编程抽象的算法实现的API或平台；
+- MLlib是Spark实现一些常见的机器学习算法和实用程序，包括分类、回归、聚类、协同过滤、降维以及底层优化，该算法可以进行可扩充； MLRuntime 基于Spark计算框架，将Spark的分布式计算应用到机器学习领域。</p>
+<p>  MLlib主要包含三个部分：
+- 底层基础：包括Spark的运行库、矩阵库和向量库
+- 算法库：包含广义线性模型、推荐系统、聚类、决策树和评估的算法
+- 实用程序：包括测试数据的生成、外部数据的读入等功能</p>
+<p><img alt="架构图" src="./img/18-2-4-1.png"/>
+<center>架构图</center></p>
+<p>  MLlib目前支持4种常见的机器学习问题: 分类、回归、聚类和协同过滤，MLlib在Spark整个生态系统中的位置如图下图所示。</p>
+<h3 id="1825-ray">18.2.5 Ray<a class="headerlink" href="#1825-ray" title="Permanent link">¶</a></h3>
+<p>  Ray【5】是加州大学伯克利分校实时智能安全执行实验室(RISELab)的研究人员针对机器学习领域开发的一种新的分布式计算框架，该框架旨在让基于Python的机器学习和深度学习工作负载能够实时执行，并具有类似消息传递接口(<span class="caps">MPI</span>)的性能和细粒度。</p>
+<p>  增强学习的场景，按照原理定义，因为没有预先可用的静态标签信息，所以通常需要引入实际的目标系统（为了加快训练，往往是目标系统的模拟环境）来获取反馈信息，用做损失/收益判断，进而完成整个训练过程的闭环反馈。典型的步骤是通过观察特定目标系统的状态，收集反馈信息，判断收益，用这些信息来调整参数，训练模型，并根据新的训练结果产出可用于调整目标系统的行为Action，输出到目标系统，进而影响目标系统状态变化，完成闭环，如此反复迭代，最终目标是追求某种收益的最大化（比如对AlphoGo来说，收益是赢得一盘围棋的比赛）。</p>
+<p>  在这个过程中，一方面，模拟目标系统，收集状态和反馈信息，判断收益，训练参数，生成Action等等行为可能涉及大量的任务和计算（为了选择最佳Action，可能要并发模拟众多可能的行为）。而这些行为本身可能也是千差万别的异构的任务，任务执行的时间也可能长短不一，执行过程有些可能要求同步，也有些可能更适合异步。</p>
+<p>  另一方面，整个任务流程的DAG图也可能是动态变化的，系统往往可能需要根据前一个环节的结果，调整下一个环节的行为参数或者流程。这种调整，可能是目标系统的需要（比如在自动驾驶过程中遇到行人了，那么我们可能需要模拟计算刹车的距离来判断该采取的行动是刹车还是拐弯，而平时可能不需要这个环节），也可能是增强学习特定训练算法的需要（比如根据多个并行训练的模型的当前收益，调整模型超参数，替换模型等等）。</p>
+<p>  此外，由于所涉及到的目标系统可能是具体的，现实物理世界中的系统，所以对时效性也可能是有强要求的。举个例子，比如你想要实现的系统是用来控制机器人行走，或者是用来打视频游戏的。那么整个闭环反馈流程就需要在特定的时间限制内完成（比如毫秒级别）。</p>
+<p>  总结来说，就是增强学习的场景，对分布式计算框架的任务调度延迟，吞吐量和动态修改DAG图的能力都可能有很高的要求。按照官方的设计目标，Ray需要支持异构计算任务，动态计算链路，毫秒级别延迟和每秒调度百万级别任务的能力。</p>
+<p>  Ray的目标问题，主要是在类似增强学习这样的场景中所遇到的工程问题。那么增强学习的场景和普通的机器学习，深度学习的场景又有什么不同呢？简单来说，就是对整个处理链路流程的时效性和灵活性有更高的要求。</p>
+<p>Ray框架优点
+- 海量任务调度能力
+- 毫秒级别的延迟
+- 异构任务的支持
+- 任务拓扑图动态修改的能力</p>
+<p>  Ray没有采用中心任务调度的方案，而是采用了类似层级（hierarchy）调度的方案，除了一个全局的中心调度服务节点（实际上这个中心调度节点也是可以水平拓展的），任务的调度也可以在具体的执行任务的工作节点上，由本地调度服务来管理和执行。 与传统的层级调度方案，至上而下分配调度任务的方式不同的是，Ray采用了至下而上的调度策略。也就是说，任务调度的发起，并不是先提交给全局的中心调度器统筹规划以后再分发给次级调度器的。而是由任务执行节点直接提交给本地的调度器，本地的调度器如果能满足该任务的调度需求就直接完成调度请求，在无法满足的情况下，才会提交给全局调度器，由全局调度器协调转发给有能力满足需求的另外一个节点上的本地调度器去调度执行。</p>
+<p>  架构设计一方面减少了跨节点的RPC开销，另一方面也能规避中心节点的瓶颈问题。当然缺点也不是没有，由于缺乏全局的任务视图，无法进行全局规划，因此任务的拓扑逻辑结构也就未必是最优的了。</p>
+<p><img alt="架构图" src="./img/18-2-5-1.png"/>
+<center>架构图</center></p>
+<p><img alt="任务调度图" src="./img/18-2-5-2.png"/>
+<center>任务调度图</center></p>
+<p>  Ray架构现状：
+- API层以上 的部分还比较薄弱，Core模块核心逻辑估需要时间打磨。
+- 国内目前除了蚂蚁金服和RISELab有针对性的合作以外，关注程度还很低，没有实际的应用实例看到，整体来说还处于比较早期的框架构建阶段。</p>
+<p>  Github地址：https://github.com/ray-project/ray</p>
+<h3 id="1826-spark-stream">18.2.6 Spark stream<a class="headerlink" href="#1826-spark-stream" title="Permanent link">¶</a></h3>
+<p>  随着大数据的发展，人们对大数据的处理要求也越来越高，原有的批处理框架MapReduce适合离线计算，却无法满足实时性要求较高的业务，如实时推荐、用户行为分析等。 Spark Streaming是建立在Spark上的实时计算框架，通过它提供的丰富的API、基于内存的高速执行引擎，用户可以结合流式、批处理和交互试查询应用。</p>
+<p>  Spark是一个类似于MapReduce的分布式计算框架，其核心是弹性分布式数据集，提供了比MapReduce更丰富的模型，可以在快速在内存中对数据集进行多次迭代，以支持复杂的数据挖掘算法和图形计算算法。Spark Streaming【6】是一种构建在Spark上的实时计算框架，它扩展了Spark处理大规模流式数据的能力。</p>
+<p>  Spark Streaming的优势在于：
+- 能运行在100+的结点上，并达到秒级延迟。
+- 使用基于内存的Spark作为执行引擎，具有高效和容错的特性。
+- 能集成Spark的批处理和交互查询。
+- 为实现复杂的算法提供和批处理类似的简单接口。</p>
+<p><img alt="Spark Streaming架构图" src="./img/18-2-6-1.png"/>
+<center>Spark Streaming架构图</center></p>
+<p>  Spark Streaming把实时输入数据流以时间片Δt （如1秒）为单位切分成块。Spark Streaming会把每块数据作为一个RDD，并使用RDD操作处理每一小块数据。每个块都会生成一个Spark Job处理，最终结果也返回多块。</p>
+<p><img alt="Spark Streaming基本原理图" src="./img/18-2-6-2.png"/>
+<center>Spark Streaming基本原理图</center></p>
+<p>  正如Spark Streaming最初的目标一样，它通过丰富的API和基于内存的高速计算引擎让用户可以结合流式处理，批处理和交互查询等应用。因此Spark Streaming适合一些需要历史数据和实时数据结合分析的应用场合。当然，对于实时性要求不是特别高的应用也能完全胜任。另外通过RDD的数据重用机制可以得到更高效的容错处理。</p>
+<h3 id="1827-horovod">18.2.7 Horovod<a class="headerlink" href="#1827-horovod" title="Permanent link">¶</a></h3>
+<p>  Horovod【7】 是 Uber 开源的又一个深度学习工具，它的发展吸取了 Facebook「一小时训练 ImageNet 论文」与百度 Ring Allreduce 的优点，可为用户实现分布式训练提供帮助。</p>
+<p>  Horovod 支持通过用于高性能并行计算的低层次接口 – 消息传递接口 (<span class="caps">MPI</span>) 进行分布式模型训练。有了 <span class="caps">MPI</span>，就可以利用分布式 Kubernetes 集群来训练 TensorFlow 和 PyTorch 模型。</p>
+<p>  分布式 TensorFlow 的参数服务器模型（parameter server paradigm）通常需要对大量样板代码进行认真的实现。但是 Horovod 仅需要几行。下面是一个分布式 TensorFlow 项目使用 Horovod 的示例：</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span>  <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">horovod.tensorflow</span> <span class="kn">as</span> <span class="nn">hvd</span>
+<span class="c1"># Initialize Horovod</span>
+<span class="n">hvd</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+<span class="c1"># Pin GPU to be used to process local rank (one GPU per process)</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">ConfigProto</span><span class="p">()</span>
+<span class="n">config</span><span class="o">.</span><span class="n">gpu_options</span><span class="o">.</span><span class="n">visible_device_list</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">hvd</span><span class="o">.</span><span class="n">local_rank</span><span class="p">())</span>
+<span class="c1"># Build model…</span>
+<span class="n">loss</span> <span class="o">=</span> <span class="err">…</span>
+<span class="n">opt</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">AdagradOptimizer</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="c1"># Add Horovod Distributed Optimizer</span>
+<span class="n">opt</span> <span class="o">=</span> <span class="n">hvd</span><span class="o">.</span><span class="n">DistributedOptimizer</span><span class="p">(</span><span class="n">opt</span><span class="p">)</span>
+<span class="c1"># Add hook to broadcast variables from rank 0 to all other processes during</span>
+<span class="c1"># initialization.</span>
+<span class="n">hooks</span> <span class="o">=</span> <span class="p">[</span><span class="n">hvd</span><span class="o">.</span><span class="n">BroadcastGlobalVariablesHook</span><span class="p">(</span><span class="mi">0</span><span class="p">)]</span>
+<span class="c1"># Make training operation</span>
+<span class="n">train_op</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">loss</span><span class="p">)</span>
+<span class="c1"># The MonitoredTrainingSession takes care of session initialization,</span>
+<span class="c1"># restoring from a checkpoint, saving to a checkpoint, and closing when done</span>
+<span class="c1"># or an error occurs.</span>
+<span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">MonitoredTrainingSession</span><span class="p">(</span><span class="n">checkpoint_dir</span><span class="o">=</span><span class="err">“</span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">train_logs</span><span class="err">”</span><span class="p">,</span>
+                                      <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span>
+                                      <span class="n">hooks</span><span class="o">=</span><span class="n">hooks</span><span class="p">)</span> <span class="k">as</span> <span class="n">mon_sess</span><span class="p">:</span>
+ <span class="k">while</span> <span class="ow">not</span> <span class="n">mon_sess</span><span class="o">.</span><span class="n">should_stop</span><span class="p">():</span>
+   <span class="c1"># Perform synchronous training.</span>
+   <span class="n">mon_sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">train_op</span><span class="p">)</span>
+</pre></div>
+<p>  在该示例中，粗体文字指进行单个 <span class="caps">GPU</span> 分布式项目时必须做的改变：</p>
+<ul>
+<li>hvd.init() 初始化 Horovod。</li>
+<li>config.gpu_options.visible_device_list = str(hvd.local_rank()) 向每个 TensorFlow 流程分配一个 <span class="caps">GPU</span>。</li>
+<li>opt=hvd.DistributedOptimizer(opt) 使用 Horovod 优化器包裹每一个常规 TensorFlow 优化器，Horovod 优化器使用 ring-allreduce 平均梯度。</li>
+<li>hvd.BroadcastGlobalVariablesHook(0) 将变量从第一个流程向其他流程传播，以实现一致性初始化。如果该项目无法使用 MonitoredTrainingSession，则用户可以运行 hvd.broadcast_global_variables(0)。</li>
+</ul>
+<p>  之后，可以使用 mpirun 命令使该项目的多个拷贝在多个服务器中运行：</p>
+<div class="highlight"><pre><span></span>$ mpirun -np <span class="m">16</span> -x LD_LIBRARY_PATH -H 
+server1:4,server2:4,server3:4,server4:4 python train.py
+</pre></div>
+<p>  mpirun 命令向四个节点分布 train.py，然后在每个节点的四个 <span class="caps">GPU</span> 上运行 train.py。</p>
+<p>  Github地址：https://github.com/uber/horovod</p>
+<h3 id="1828-bigdl">18.2.8 BigDL<a class="headerlink" href="#1828-bigdl" title="Permanent link">¶</a></h3>
+<p>  BigDL【9】是一种基于Apache Spark的分布式深度学习框架。它可以无缝的直接运行在现有的Apache Spark和Hadoop集群之上。BigDL的设计吸取了Torch框架许多方面的知识，为深度学习提供了全面的支持；包括数值计算和高级神经网络；借助现有的Spark集群来运行深度学习计算，并简化存储在Hadoop中的大数据集的数据加载。</p>
+<p>  BigDL优点：
+- 丰富的深度学习支持。模拟Torch之后，BigDL为深入学习提供全面支持，包括数字计算（通过Tensor）和高级神经网络 ; 此外，用户可以使用BigDL将预先训练好的Caffe或Torch模型加载到Spark程序中。
+- 极高的性能。为了实现高性能，BigDL在每个Spark任务中使用英特尔MKL和多线程编程。因此，在单节点Xeon（即与主流GPU 相当）上，它比开箱即用开源Caffe，Torch或TensorFlow快了数量级。
+- 有效地横向扩展。BigDL可以通过利用Apache Spark（快速分布式数据处理框架），以及高效实施同步SGD和全面减少Spark的通信，从而有效地扩展到“大数据规模”上的数据分析</p>
+<p>  BigDL缺点：
+- 对机器要求高 jdk7上运行性能差 在CentOS 6和7上，要将最大用户进程增加到更大的值（例如514585）; 否则，可能会看到错误，如“无法创建新的本机线程”。 
+- 训练和验证的数据会加载到内存，挤占内存</p>
+<p>  BigDL满足的应用场景：
+- 直接在Hadoop/Spark框架下使用深度学习进行大数据分析（即将数据存储在HDFS、HBase、Hive等数据库上）；
+- 在Spark程序中/工作流中加入深度学习功能；
+- 利用现有的 Hadoop/Spark 集群来运行深度学习程序，然后将代码与其他的应用场景进行动态共享，例如ETL（Extract、Transform、Load，即通常所说的数据抽取）、数据仓库（data warehouse）、功能引擎、经典机器学习、图表分析等。</p>
+<h3 id="1829-petastorm">18.2.9 Petastorm<a class="headerlink" href="#1829-petastorm" title="Permanent link">¶</a></h3>
+<p>  Petastorm是一个由 Uber <span class="caps">ATG</span> 开发的开源数据访问库。这个库可以直接基于数 <span class="caps">TB</span> Parquet 格式的数据集进行单机或分布式训练和深度学习模型评估。Petastorm 支持基于 Python 的机器学习框架，如 Tensorflow、Pytorch 和 PySpark，也可以直接用在 Python 代码中。</p>
+<p><img alt="深度学习集群" src="./img/18-2-9-1.png"/>
+<center>深度学习集群</center></p>
+<p>  即使是在现代硬件上训练深度模型也很耗时，而且在很多情况下，很有必要在多台机器上分配训练负载。典型的深度学习集群需要执行以下几个步骤：
+- 一台或多台机器读取集中式或本地数据集。
+- 每台机器计算损失函数的值，并根据模型参数计算梯度。在这一步通常会使用 <span class="caps">GPU</span>。
+- 通过组合估计的梯度（通常由多台机器以分布式的方式计算得出）来更新模型系数。</p>
+<p>  通常，一个数据集是通过连接多个数据源的记录而生成的。这个由 Apache Spark 的 Python 接口 PySpark 生成的数据集稍后将被用在机器学习训练中。Petastorm 提供了一个简单的功能，使用 Petastorm 特定的元数据对标准的 Parquet 进行了扩展，从而让它可以与 Petastorm 兼容。
+有了 Petastorm，消费数据就像在 <span class="caps">HDFS</span> 或文件系统中创建和迭代读取对象一样简单。Petastorm 使用 PyArrow 来读取 Parquet 文件。</p>
+<p>  将多个数据源组合到单个表格结构中，从而生成数据集。可以多次使用相同的数据集进行模型训练和评估。
+<img alt="深度学习集群" src="./img/18-2-9-2.png"/>
+<center>深度学习集群</center></p>
+<p>  为分布式训练进行分片
+在分布式训练环境中，每个进程通常负责训练数据的一个子集。一个进程的数据子集与其他进程的数据子集正交。Petastorm 支持将数据集的读时分片转换为正交的样本集。
+<img alt="Petastorm 将数据集的非重叠子集提供给参与分布式训练的不同机器" src="./img/18-2-9-3.png"/>
+<center>Petastorm 将数据集的非重叠子集提供给参与分布式训练的不同机器</center></p>
+<p>  本地缓存
+Petastorm 支持在本地存储中缓存数据。当网络连接速度较慢或带宽很昂贵时，这会派上用场。
+<img alt="本地缓存" src="./img/18-2-9-4.png"/></p>
+<p>Github地址：https://github.com/uber/petastorm</p>
+<h3 id="18210-tensorflowonspark">18.2.10 TensorFlowOnSpark<a class="headerlink" href="#18210-tensorflowonspark" title="Permanent link">¶</a></h3>
+<p>  TensorFlowOnSpark【10】为 Apache Hadoop 和 Apache Spark 集群带来可扩展的深度学习。 通过结合深入学习框架 TensorFlow 和大数据框架 Apache Spark 、Apache Hadoop 的显着特征，TensorFlowOnSpark 能够在 <span class="caps">GPU</span> 和 <span class="caps">CPU</span> 服务器集群上实现分布式深度学习。</p>
+<p>  满足的应用场景： 为了利用TensorFlow在现有的Spark和Hadoop集群上进行深度学习。而不需要为深度学习设置单独的集群。</p>
+<p><img alt="架构图" src="./img/18-2-10-1.png"/>
+<center>架构图</center></p>
+<p><img alt="运行流程图" src="./img/18-2-10-2.png"/>
+<center>运行流程图</center></p>
+<p>  优点：
+- 轻松迁移所有现有的TensorFlow程序，&lt;10行代码更改; 
+- 支持所有TensorFlow功能：同步/异步训练，模型/数据并行，推理和TensorBoard; 
+- 服务器到服务器的直接通信在可用时实现更快的学习; 
+- 允许数据集在HDFS和由Spark推动的其他来源或由TensorFlow拖动; 
+- 轻松集成您现有的数据处理流水线和机器学习算法（例如，MLlib，CaffeOnSpark）; 
+- 轻松部署在云或内部部署：CPU和GPU，以太网和Infiniband。
+- TensorFlowOnSpark是基于google的TensorFlow的实现，而TensorFlow有着一套完善的教程，内容丰富。 </p>
+<p>  劣势：
+- 开源时间不长，未得到充分的验证。</p>
+<p>  Github 地址:https://github.com/yahoo/TensorFlowOnSpark</p>
+<h2 id="183">18.3 如何选择合适的分布式计算框架进行模型训练？<a class="headerlink" href="#183" title="Permanent link">¶</a></h2>
+<h2 id="184">18.4 如何进行实时计算？<a class="headerlink" href="#184" title="Permanent link">¶</a></h2>
+<h3 id="1841">18.4.1 什么是实时流计算？<a class="headerlink" href="#1841" title="Permanent link">¶</a></h3>
+<p>  所谓实时流计算，就是近几年由于数据得到广泛应用之后，在数据持久性建模不满足现状的情况下，急需数据流的瞬时建模或者计算处理。这种实时计算的应用实例有金融服务、网络监控、电信数据管理、 Web 应用、生产制造、传感检测，等等。在这种数据流模型中，单独的数据单元可能是相关的元组（Tuple），如网络测量、呼叫记录、网页访问等产生的数据。但是，这些数据以大量、快速、时变（可能是不可预知）的数据流持续到达，由此产生了一些基础性的新的研究问题——实时计算。实时计算的一个重要方向就是实时流计算。</p>
+<h3 id="1842">18.4.2 实时流计算过程<a class="headerlink" href="#1842" title="Permanent link">¶</a></h3>
+<p><img alt="" src="./img/18-4-1.png"/></p>
+<p>  我们以热卖产品的统计为例，看下传统的计算手段：
+- 将用户行为、log等信息清洗后保存在数据库中.
+- 将订单信息保存在数据库中.
+- 利用触发器或者协程等方式建立本地索引，或者远程的独立索引.
+- join订单信息、订单明细、用户信息、商品信息等等表，聚合统计20分钟内热卖产品，并返回top-10.
+- web或app展示.</p>
+<p>  这是一个假想的场景，但假设你具有处理类似场景的经验，应该会体会到这样一些问题和难处：
+- 水平扩展问题（scale-out） 显然，如果是一个具有一定规模的电子商务网站，数据量都是很大的。而交易信息因为涉及事务，所以很难直接舍弃关系型数据库的事务能力，迁移到具有更好的scale-out能力的NoSQL数据库中。</p>
+<p>  那么，一般都会做sharding。历史数据还好说，我们可以按日期来归档，并可以通过批处理式的离线计算，将结果缓存起来。
+但是，这里的要求是20分钟内，这很难。
+- 性能问题 这个问题，和scale-out是一致的，假设我们做了sharding，因为表分散在各个节点中，所以我们需要多次入库，并在业务层做聚合计算。</p>
+<p>  问题是，20分钟的时间要求，我们需要入库多少次呢？
+10分钟呢？
+5分钟呢？ 实时呢？</p>
+<p>  而且，业务层也同样面临着单点计算能力的局限，需要水平扩展，那么还需要考虑一致性的问题。
+所以，到这里一切都显得很复杂。
+- 业务扩展问题</p>
+<p>  假设我们不仅仅要处理热卖商品的统计，还要统计广告点击、或者迅速根据用户的访问行为判断用户特征以调整其所见的信息，更加符合用户的潜在需求等，那么业务层将会更加复杂。
+也许你有更好的办法，但实际上，我们需要的是一种新的认知：
+这个世界发生的事，是实时的。
+所以我们需要一种实时计算的模型，而不是批处理模型。 我们需要的这种模型，必须能够处理很大的数据，所以要有很好的scale-out能力，最好是，我们都不需要考虑太多一致性、复制的问题。</p>
+<p>  那么，这种计算模型就是实时计算模型，也可以认为是流式计算模型。
+现在假设我们有了这样的模型，我们就可以愉快地设计新的业务场景：
+- 转发最多的微博是什么？
+- 最热卖的商品有哪些？
+- 大家都在搜索的热点是什么？
+- 我们哪个广告，在哪个位置，被点击最多？
+或者说，我们可以问：   这个世界，在发生什么？</p>
+<p>  最热的微博话题是什么？
+我们以一个简单的滑动窗口计数的问题，来揭开所谓实时计算的神秘面纱。
+假设，我们的业务要求是： 统计20分钟内最热的10个微博话题。</p>
+<p>  解决这个问题，我们需要考虑：
+- 数据源</p>
+<p>  这里，假设我们的数据，来自微博长连接推送的话题。
+- 问题建模</p>
+<p>  我们认为的话题是#号扩起来的话题，最热的话题是此话题出现的次数比其它话题都要多。
+比如：@foreach_break : 你好,#世界#,我爱你，#微博#。 “世界”和“微博”就是话题。</p>
+<ul>
+<li>
+<p>计算引擎采用storm</p>
+</li>
+<li>
+<p>定义时间</p>
+</li>
+</ul>
+<p>  时间的定义是一件很难的事情，取决于所需的精度是多少。
+根据实际，我们一般采用tick来表示时刻这一概念。
+在storm的基础设施中，executor启动阶段，采用了定时器来触发“过了一段时间”这个事件。 如下所示：</p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="kd">defn </span><span class="nv">setup-ticks!</span> <span class="p">[</span><span class="nv">worker</span> <span class="nv">executor-data</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">storm-conf</span> <span class="p">(</span><span class="ss">:storm-conf</span> <span class="nv">executor-data</span><span class="p">)</span>
+        <span class="nv">tick-time-secs</span> <span class="p">(</span><span class="nf">storm-conf</span> <span class="nv">TOPOLOGY-TICK-TUPLE-FREQ-SECS</span><span class="p">)</span>
+        <span class="nv">receive-queue</span> <span class="p">(</span><span class="ss">:receive-queue</span> <span class="nv">executor-data</span><span class="p">)</span>
+        <span class="nv">context</span> <span class="p">(</span><span class="ss">:worker-context</span> <span class="nv">executor-data</span><span class="p">)]</span>
+    <span class="p">(</span><span class="k">when </span><span class="nv">tick-time-secs</span>
+      <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nf">or</span> <span class="p">(</span><span class="nf">system-id?</span> <span class="p">(</span><span class="ss">:component-id</span> <span class="nv">executor-data</span><span class="p">))</span>
+              <span class="p">(</span><span class="nf">and</span> <span class="p">(</span><span class="nf">=</span> <span class="nv">false</span> <span class="p">(</span><span class="nf">storm-conf</span> <span class="nv">TOPOLOGY-ENABLE-MESSAGE-TIMEOUTS</span><span class="p">))</span>
+                   <span class="p">(</span><span class="nf">=</span> <span class="ss">:spout</span> <span class="p">(</span><span class="ss">:type</span> <span class="nv">executor-data</span><span class="p">))))</span>
+        <span class="p">(</span><span class="nf">log-message</span> <span class="s">"Timeouts disabled for executor "</span> <span class="p">(</span><span class="ss">:component-id</span> <span class="nv">executor-data</span><span class="p">)</span> <span class="s">":"</span> <span class="p">(</span><span class="ss">:executor-id</span> <span class="nv">executor-data</span><span class="p">))</span>
+        <span class="p">(</span><span class="nf">schedule-recurring</span>
+          <span class="p">(</span><span class="ss">:user-timer</span> <span class="nv">worker</span><span class="p">)</span>
+          <span class="nv">tick-time-secs</span>
+          <span class="nv">tick-time-secs</span>
+          <span class="p">(</span><span class="kd">fn </span><span class="p">[]</span>
+            <span class="p">(</span><span class="nf">disruptor/publish</span>
+              <span class="nv">receive-queue</span>
+              <span class="p">[[</span><span class="nv">nil</span> <span class="p">(</span><span class="nf">TupleImpl.</span> <span class="nv">context</span> <span class="p">[</span><span class="nv">tick-time-secs</span><span class="p">]</span> <span class="nv">Constants/SYSTEM_TASK_ID</span> <span class="nv">Constants/SYSTEM_TICK_STREAM_ID</span><span class="p">)]]</span>
+              <span class="p">)))))))</span>
+</pre></div>
+<p>之前的博文中，已经详细分析了这些基础设施的关系，不理解的童鞋可以翻看前面的文章。
+每隔一段时间，就会触发这样一个事件，当流的下游的bolt收到一个这样的事件时，就可以选择是增量计数还是将结果聚合并发送到流中。
+bolt如何判断收到的tuple表示的是“tick”呢？ 负责管理bolt的executor线程，从其订阅的消息队列消费消息时，会调用到bolt的execute方法，那么，可以在execute中这样判断：</p>
+<div class="highlight"><pre><span></span>public static boolean isTick(Tuple tuple) {
+    return tuple != null
+           &amp;&amp; Constants.SYSTEM_COMPONENT_ID  .equals(tuple.getSourceComponent())
+           &amp;&amp; Constants.SYSTEM_TICK_STREAM_ID.equals(tuple.getSourceStreamId());
+}
+</pre></div>
+<p>结合上面的setup-tick!的clojure代码，我们可以知道SYSTEM_TICK_STREAM_ID在定时事件的回调中就以构造函数的参数传递给了tuple，那么SYSTEM_COMPONENT_ID是如何来的呢？
+可以看到，下面的代码中，SYSTEM_TASK_ID同样传给了tuple：
+;; 请注意SYSTEM_TASK_ID和SYSTEM_TICK_STREAM_ID
+(TupleImpl. context [tick-time-secs] Constants/SYSTEM_TASK_ID Constants/SYSTEM_TICK_STREAM_ID) 然后利用下面的代码，就可以得到SYSTEM_COMPONENT_ID：</p>
+<div class="highlight"><pre><span></span>    public String getComponentId(int taskId) {
+        if(taskId==Constants.SYSTEM_TASK_ID) {
+            return Constants.SYSTEM_COMPONENT_ID;
+        } else {
+            return _taskToComponent.get(taskId);
+        }
+    }
+</pre></div>
+<p>滑动窗口
+有了上面的基础设施，我们还需要一些手段来完成“工程化”，将设想变为现实。
+这里，我们看看Michael G. Noll的滑动窗口设计。</p>
+<p><img alt="" src="./img/18-4-2.png"/></p>
+<p>Topology</p>
+<div class="highlight"><pre><span></span>    String spoutId = "wordGenerator";
+    String counterId = "counter";
+    String intermediateRankerId = "intermediateRanker";
+    String totalRankerId = "finalRanker";
+    // 这里，假设TestWordSpout就是我们发送话题tuple的源
+    builder.setSpout(spoutId, new TestWordSpout(), 5);
+    // RollingCountBolt的时间窗口为9秒钟，每3秒发送一次统计结果到下游
+    builder.setBolt(counterId, new RollingCountBolt(9, 3), 4).fieldsGrouping(spoutId, new Fields("word"));
+    // IntermediateRankingsBolt，将完成部分聚合，统计出top-n的话题
+    builder.setBolt(intermediateRankerId, new IntermediateRankingsBolt(TOP_N), 4).fieldsGrouping(counterId, new Fields(
+        "obj"));
+        // TotalRankingsBolt， 将完成完整聚合，统计出top-n的话题
+    builder.setBolt(totalRankerId, new TotalRankingsBolt(TOP_N)).globalGrouping(intermediateRankerId);
+ ```
+
+上面的topology设计如下：
+
+![](./img/18-4-3.png)
+
+将聚合计算与时间结合起来
+前文，我们叙述了tick事件，回调中会触发bolt的execute方法，那可以这么做：
+</pre></div>
+<p>RollingCountBolt:
+  @Override
+  public void execute(Tuple tuple) {
+    if (TupleUtils.isTick(tuple)) {
+      <span class="caps">LOG</span>.debug(“Received tick tuple, triggering emit of current window counts”);
+      // tick来了，将时间窗口内的统计结果发送，并让窗口滚动
+      emitCurrentWindowCounts();
+    }
+    else {
+      // 常规tuple，对话题计数即可
+      countObjAndAck(tuple);
+    } }</p>
+<p>// obj即为话题，增加一个计数 count++
+  // 注意，这里的速度基本取决于流的速度，可能每秒百万，也可能每秒几十.
+  // 内存不足？ bolt可以scale-out.
+  private void countObjAndAck(Tuple tuple) {
+    Object obj = tuple.getValue(0);
+    counter.incrementCount(obj);
+    collector.ack(tuple); }</p>
+<p>// 将统计结果发送到下游
+  private void emitCurrentWindowCounts() {
+    Map<object, long=""> counts = counter.getCountsThenAdvanceWindow();
+    int actualWindowLengthInSeconds = lastModifiedTracker.secondsSinceOldestModification();
+    lastModifiedTracker.markAsModified();
+    if (actualWindowLengthInSeconds != windowLengthInSeconds) {
+      <span class="caps">LOG</span>.warn(String.format(WINDOW_LENGTH_WARNING_TEMPLATE, actualWindowLengthInSeconds, windowLengthInSeconds));
+    }
+    emit(counts, actualWindowLengthInSeconds);
+  } “`</object,></p>
+<p>上面的代码可能有点抽象，看下这个图就明白了，tick一到，窗口就滚动：</p>
+<p><img alt="" src="./img/18-4-4.png"/></p>
+<div class="highlight"><pre><span></span>IntermediateRankingsBolt &amp; TotalRankingsBolt：
+  public final void execute(Tuple tuple, BasicOutputCollector collector) {
+    if (TupleUtils.isTick(tuple)) {
+      getLogger().debug("Received tick tuple, triggering emit of current rankings");
+      // 将聚合并排序的结果发送到下游
+      emitRankings(collector);
+    }
+    else {
+      // 聚合并排序
+      updateRankingsWithTuple(tuple);
+    }
+  }
+</pre></div>
+<p>  其中，IntermediateRankingsBolt和TotalRankingsBolt的聚合排序方法略有不同：</p>
+<p>IntermediateRankingsBolt的聚合排序方法：</p>
+<div class="highlight"><pre><span></span>  @Override
+  void updateRankingsWithTuple(Tuple tuple) {
+    // 这一步，将话题、话题出现的次数提取出来
+    Rankable rankable = RankableObjectWithFields.from(tuple);
+    // 这一步，将话题出现的次数进行聚合，然后重排序所有话题
+    super.getRankings().updateWith(rankable);
+  }
+</pre></div>
+<p>TotalRankingsBolt的聚合排序方法：</p>
+<div class="highlight"><pre><span></span>  @Override
+  void updateRankingsWithTuple(Tuple tuple) {
+  // 提出来自IntermediateRankingsBolt的中间结果
+    Rankings rankingsToBeMerged = (Rankings) tuple.getValue(0);
+  // 聚合并排序
+    super.getRankings().updateWith(rankingsToBeMerged);
+  // 去0，节约内存
+    super.getRankings().pruneZeroCounts();
+  }
+</pre></div>
+<p>而重排序方法比较简单粗暴，因为只求前N个，N不会很大：</p>
+<div class="highlight"><pre><span></span>  private void rerank() {
+    Collections.sort(rankedItems);
+    Collections.reverse(rankedItems);
+  }
+</pre></div>
+<p>  结语</p>
+<p>  下图可能就是我们想要的结果，我们完成了t0 - t1时刻之间的热点话题统计. 
+<img alt="" src="./img/18-4-5.png"/></p>
+<h2 id="185">18.5 如何进行离线计算？<a class="headerlink" href="#185" title="Permanent link">¶</a></h2>
+<h2 id="186">18.6 如何使用分布式框架提高模型训练速度？<a class="headerlink" href="#186" title="Permanent link">¶</a></h2>
+<h2 id="187">18.7 深度学习分布式计算框架如何在移动互联网中应用？<a class="headerlink" href="#187" title="Permanent link">¶</a></h2>
+<h2 id="188">18.8 如何在个性化推荐中应用深度学习分布式框架？<a class="headerlink" href="#188" title="Permanent link">¶</a></h2>
+<h2 id="189">18.9 如何评价个性化推荐系统的效果？<a class="headerlink" href="#189" title="Permanent link">¶</a></h2>
+<h3 id="1891-precision-recall">18.9.1 准确率与召回率（Precision <span class="amp">&amp;</span> Recall）<a class="headerlink" href="#1891-precision-recall" title="Permanent link">¶</a></h3>
+<p>  准确率和召回率是广泛用于信息检索和统计学分类领域的两个度量值，用来评价结果的质量。其中精度是检索出相关文档数与检索出的文档总数的比率，衡量的是检索系统的查准率；召回率是指检索出的相关文档数和文档库中所有的相关文档数的比率，衡量的是检索系统的查全率。</p>
+<p>  一般来说，Precision就是检索出来的条目（比如：文档、网页等）有多少是准确的，Recall就是所有准确的条目有多少被检索出来了。</p>
+<p>  正确率、召回率和 F 值是在鱼龙混杂的环境中，选出目标的重要评价指标。不妨看看这些指标的定义先：</p>
+<div class="highlight"><pre><span></span>正确率 = 提取出的正确信息条数 /  提取出的信息条数
+
+召回率 = 提取出的正确信息条数 /  样本中的信息条数
+</pre></div>
+<p>  两者取值在0和1之间，数值越接近1，查准率或查全率就越高。   </p>
+<div class="highlight"><pre><span></span>F值  = 正确率 * 召回率 * 2 / (正确率 + 召回率) （F 值即为正确率和召回率的调和平均值）
+</pre></div>
+<p>  不妨举这样一个例子：某池塘有1400条鲤鱼，300只虾，300只鳖。现在以捕鲤鱼为目的。撒一大网，逮着了700条鲤鱼，200只虾，100只鳖。那么，这些指标分别如下：</p>
+<div class="highlight"><pre><span></span>正确率 = 700 / (700 + 200 + 100) = 70%
+
+召回率 = 700 / 1400 = 50%
+
+F值 = 70% * 50% * 2 / (70% + 50%) = 58.3%
+</pre></div>
+<p>  不妨看看如果把池子里的所有的鲤鱼、虾和鳖都一网打尽，这些指标又有何变化：</p>
+<div class="highlight"><pre><span></span>正确率 = 1400 / (1400 + 300 + 300) = 70%
+
+召回率 = 1400 / 1400 = 100%
+
+F值 = 70% * 100% * 2 / (70% + 100%) = 82.35%
+</pre></div>
+<p>  由此可见，正确率是评估捕获的成果中目标成果所占得比例；召回率，顾名思义，就是从关注领域中，召回目标类别的比例；而F值，则是综合这二者指标的评估指标，用于综合反映整体的指标。</p>
+<p>  当然希望检索结果Precision越高越好，同时Recall也越高越好，但事实上这两者在某些情况下有矛盾的。比如极端情况下，我们只搜索出了一个结果，且是准确的，那么Precision就是100%，但是Recall就很低；而如果我们把所有结果都返回，那么比如Recall是100%，但是Precision就会很低。因此在不同的场合中需要自己判断希望Precision比较高或是Recall比较高。如果是做实验研究，可以绘制Precision-Recall曲线来帮助分析。</p>
+<h3 id="1892-f-measure">18.9.2 综合评价指标（F-Measure）<a class="headerlink" href="#1892-f-measure" title="Permanent link">¶</a></h3>
+<p>  P和R指标有时候会出现的矛盾的情况，这样就需要综合考虑他们，最常见的方法就是F-Measure（又称为F-Score）。</p>
+<p>  F-Measure是Precision和Recall加权调和平均：</p>
+<p><img alt="F-Measure" src="./img/18-9-2-1.png"/></p>
+<p>  当参数α=1时，就是最常见的F1，也即</p>
+<p><img alt="F-Measure" src="./img/18-9-2-2.png"/></p>
+<p>  可知F1综合了P和R的结果，当F1较高时则能说明试验方法比较有效。</p>
+<h3 id="1893-e">18.9.3 E值<a class="headerlink" href="#1893-e" title="Permanent link">¶</a></h3>
+<p>  E值表示查准率P和查全率R的加权平均值，当其中一个为0时，E值为1，其计算公式：</p>
+<p><img alt="E值" src="./img/18-9-3-1.png"/></p>
+<p>  b越大，表示查准率的权重越大。</p>
+<h3 id="1894-average-precision">18.9.4 平均正确率（Average Precision）<a class="headerlink" href="#1894-average-precision" title="Permanent link">¶</a></h3>
+<p>  平均正确率表示不同查全率的点上的正确率的平均。</p>
+<h2 id="1810">18.10 参考文献<a class="headerlink" href="#1810" title="Permanent link">¶</a></h2>
+<p>【1】http://www.paddlepaddle.org/documentation/book/zh/0.11.0/05.recommender_system/index.cn.html</p>
+<p>【2】https://deeplearning4j.org/cn/compare-dl4j-torch7-pylearn.html</p>
+<p>【3】http://mahout.apache.org/</p>
+<p>【4】http://spark.apache.org/docs/1.1.0/mllib-guide.html</p>
+<p>【5】https://ray.readthedocs.io/en/latest/tutorial.html</p>
+<p>【6】http://spark.apache.org/streaming/</p>
+<p>【7】https://github.com/uber/horovod</p>
+<p>【8】https://software.intel.com/en-us/articles/bigdl-distributed-deep-learning-on-apache-spark</p>
+<p>【9】https://eng.uber.com/petastorm/</p>
+<p>【10】https://yahoo.github.io/TensorFlowOnSpark/#</p>
+<p>….</p>
+<p>未完待续！</p>
+            
+            <section>
+<div class="accordion" id="accordion2">
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
+                href="https://csbwang.github.io/dl_ch18_1#disqus_thread">
+                Comments
+            </a>
+        </div>
+        <div id="disqus_thread" class="accordion-body collapse">
+            <div class="accordion-inner">
+                <div class="comments">
+                    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'FelixWang';
+        var disqus_identifier = 'https://csbwang.github.io/dl_ch18_1';
+    var disqus_url = 'https://csbwang.github.io/dl_ch18_1';
+
+    (function() {
+         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+            <hr/>
+<section>
+    <h2>Keep Reading</h2>
+<ul class="related-posts-list">
+<li><a href="https://csbwang.github.io/dl_ch7" title="第七章 生成对抗网络">第七章 生成对抗网络</a></li>
+<li><a href="https://csbwang.github.io/dl_ch1" title="第一章 数学基础">第一章 数学基础</a></li>
+<li><a href="https://csbwang.github.io/dl_ch2" title="第二章 机器学习基础">第二章 机器学习基础</a></li>
+<li><a href="https://csbwang.github.io/dl_ch16" title="第十六章 NLP">第十六章 NLP</a></li>
+<li><a href="https://csbwang.github.io/dl_ch18" title="第十八章 后端架构选型及应用场景">第十八章 后端架构选型及应用场景</a></li>
+</ul>
+<hr />
+</section>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="https://csbwang.github.io/dl_ch2" title="Previous: 第二章 机器学习基础">第二章 机器学习基础</a></li>
+                <li class="next-article"><a href="https://csbwang.github.io/dl_ch18" title="Next: 第十八章 后端架构选型及应用场景">第十八章 后端架构选型及应用场景</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time pubdate="pubdate" datetime="2019-07-06T00:00:00+08:00"> 7 6, 2019</time>
+
+<h4>Last Updated</h4>
+<time datetime="2019-07-06T00:00:00+08:00"> 7 6, 2019</time>
+
+            <h4>Category</h4>
+            <a class="category-link" href="https://csbwang.github.io/categories.html#shen-du-xue-xi-500wen-ref">深度学习500问</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://csbwang.github.io/tags.html#machine-learning-ref">machine learning
+                    <span>20</span>
+</a></li>
+            </ul>
+<h4>Stay in Touch</h4>
+    <a href="https://github.com/csbwang" title="My Github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-github sidebar-social-links"></i></a>
+<!-- Begin MailChimp Signup Form -->
+<div id="mc-embed-signup">
+<form action="empty" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+<h4>Get Monthly Updates</h4>
+<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Enter your email..." required>
+<div class="clear"><input type="submit" value="Send me Free updates" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+</form>
+</div>
+<!--End mc_embed_signup-->
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>            <script src="https://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+            <script type="text/javascript">
+var disqus_shortname = 'FelixWang';
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+<script  language="javascript" type="text/javascript">
+function uncollapse() {
+    if (window.location.hash.match(/^#comment-\d+$/)) {
+        $('#disqus_thread').collapse('show');
+    }
+}
+</script>
+<script type="text/javascript" language="JavaScript">
+uncollapse();
+window.onhashchange=function(){
+    if (window.location.hash.match(/^#comment-\d+$/))
+        window.location.reload(true);
+}
+</script>
+<script>
+$('#disqus_thread').on('shown', function () {
+    var link = document.getElementsByClassName('accordion-toggle');
+    var old_innerHTML = link[0].innerHTML;
+    $(link[0]).fadeOut(500, function() {
+        $(this).text('Click here to hide comments').fadeIn(500);
+    });
+    $('#disqus_thread').on('hidden', function () {
+        $(link[0]).fadeOut(500, function() {
+            $(this).text(old_innerHTML).fadeIn(500);
+        });
+    })
+})
+</script>
+
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>

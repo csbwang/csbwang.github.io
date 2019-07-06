@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="warmber" />
+        <meta name="copyright" content="warmber" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="machine learning, 深度学习500问, " />
+
+<meta property="og:title" content="第一章 数学基础 "/>
+<meta property="og:url" content="https://csbwang.github.io/dl_ch1" />
+<meta property="og:description" content="" />
+<meta property="og:site_name" content="warmber&#39;s Blog" />
+<meta property="og:article:author" content="warmber" />
+<meta property="og:article:published_time" content="2019-07-06T00:00:00+08:00" />
+<meta property="" content="2019-07-06T00:00:00+08:00" />
+<meta name="twitter:title" content="第一章 数学基础 ">
+<meta name="twitter:description" content="">
+
+        <title>第一章 数学基础  · warmber&#39;s Blog
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://csbwang.github.io/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://csbwang.github.io/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://csbwang.github.io/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://csbwang.github.io/theme/css/custom.css" media="screen">
+        <link rel="shortcut icon" href="https://csbwang.github.io/theme/images/favicon.ico" type="image/x-icon" type="image/png" />
+        <link rel="icon" href="https://csbwang.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
+        <link rel="apple-touch-icon" href="https://csbwang.github.io/theme/images/apple-touch-icon.png"  type="image/png" />
+        <link rel="apple-touch-icon" sizes="57x57" href="https://csbwang.github.io/theme/images/apple-touch-icon-57x57.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="https://csbwang.github.io/theme/images/apple-touch-icon-72x72.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="https://csbwang.github.io/theme/images/apple-touch-icon-76x76.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="https://csbwang.github.io/theme/images/apple-touch-icon-114x114.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="https://csbwang.github.io/theme/images/apple-touch-icon-120x120.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="https://csbwang.github.io/theme/images/apple-touch-icon-144x144.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="https://csbwang.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://csbwang.github.io/"><span class=site-name>warmber's Blog</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://csbwang.github.io">Home</a></li>
+                            <li ><a href="https://csbwang.github.io/categories.html">Categories</a></li>
+                            <li ><a href="https://csbwang.github.io/tags.html">Tags</a></li>
+                            <li ><a href="https://csbwang.github.io/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="https://csbwang.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://csbwang.github.io/dl_ch1"> 第一章&nbsp;数学基础  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc">
+<ul>
+<li><a href="#_1">第一章 数学基础</a><ul>
+<li><a href="#11">1.1 向量和矩阵</a><ul>
+<li><a href="#111">1.1.1 标量、向量、矩阵、张量之间的联系</a></li>
+<li><a href="#112">1.1.2 张量与矩阵的区别</a></li>
+<li><a href="#113">1.1.3 矩阵和向量相乘结果</a></li>
+<li><a href="#114">1.1.4 向量和矩阵的范数归纳</a></li>
+<li><a href="#115">1.1.5 如何判断一个矩阵为正定</a></li>
+</ul>
+</li>
+<li><a href="#12">1.2 导数和偏导数</a><ul>
+<li><a href="#121">1.2.1 导数偏导计算</a></li>
+<li><a href="#122">1.2.2 导数和偏导数有什么区别？</a></li>
+</ul>
+</li>
+<li><a href="#13">1.3 特征值和特征向量</a><ul>
+<li><a href="#131">1.3.1 特征值分解与特征向量</a></li>
+<li><a href="#132">1.3.2 奇异值与特征值有什么关系</a></li>
+</ul>
+</li>
+<li><a href="#14">1.4 概率分布与随机变量</a><ul>
+<li><a href="#141">1.4.1 机器学习为什么要使用概率</a></li>
+<li><a href="#142">1.4.2 变量与随机变量有什么区别</a></li>
+<li><a href="#143">1.4.3 随机变量与概率分布的联系</a></li>
+<li><a href="#144">1.4.4 离散型随机变量和概率质量函数</a></li>
+<li><a href="#145">1.4.5 连续型随机变量和概率密度函数</a></li>
+<li><a href="#146">1.4.6 举例理解条件概率</a></li>
+<li><a href="#147">1.4.7 联合概率与边缘概率联系区别</a></li>
+<li><a href="#148">1.4.8 条件概率的链式法则</a></li>
+<li><a href="#149">1.4.9 独立性和条件独立性</a></li>
+</ul>
+</li>
+<li><a href="#15">1.5 常见概率分布</a><ul>
+<li><a href="#151-bernoulli">1.5.1 Bernoulli分布</a></li>
+<li><a href="#152">1.5.2 高斯分布</a></li>
+<li><a href="#153">1.5.3 何时采用正态分布</a></li>
+<li><a href="#154">1.5.4 指数分布</a></li>
+<li><a href="#155-laplace">1.5.5 Laplace 分布</a></li>
+<li><a href="#156-dirac">1.5.6 Dirac分布和经验分布</a></li>
+</ul>
+</li>
+<li><a href="#16">1.6 期望、方差、协方差、相关系数</a><ul>
+<li><a href="#161">1.6.1 期望</a></li>
+<li><a href="#162">1.6.2 方差</a></li>
+<li><a href="#163">1.6.3 协方差</a></li>
+<li><a href="#164">1.6.4 相关系数</a></li>
+</ul>
+</li>
+<li><a href="#_2">参考文献</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+            
+<h1 id="_1">第一章 数学基础<a class="headerlink" href="#_1" title="Permanent link">¶</a></h1>
+<p>深度学习通常又需要哪些数学基础？深度学习里的数学到底难在哪里？通常初学者都会有这些问题，在网络推荐及书本推荐里，经常看到会列出一系列数学科目，比如微积分、线性代数、概率论、复变函数、数值计算、优化理论、信息论等等。这些数学知识有相关性，但实际上按照这样的知识范围来学习，学习成本会很久，而且会很枯燥，本章我们通过选举一些数学基础里容易混淆的一些概念做以介绍，帮助大家更好的理清这些易混淆概念之间的关系。</p>
+<h2 id="11">1.1 向量和矩阵<a class="headerlink" href="#11" title="Permanent link">¶</a></h2>
+<h3 id="111">1.1.1 标量、向量、矩阵、张量之间的联系<a class="headerlink" href="#111" title="Permanent link">¶</a></h3>
+<p><strong>标量（scalar）</strong><br/> 一个标量表示一个单独的数，它不同于线性代数中研究的其他大部分对象（通常是多个数的数组）。我们用斜体表示标量。标量通常被赋予小写的变量名称。 </p>
+<p><strong>向量（vector）</strong><br/>
+​一个向量表示一组有序排列的数。通过次序中的索引，我们可以确定每个单独的数。通常我们赋予向量粗体的小写变量名称，比如xx。向量中的元素可以通过带脚标的斜体表示。向量<span class="math">\(X\)</span>的第一个元素是<span class="math">\(X_1\)</span>，第二个元素是<span class="math">\(X_2\)</span>，以此类推。我们也会注明存储在向量中的元素的类型（实数、虚数等）。</p>
+<p><strong>矩阵（matrix）</strong><br/>
+​矩阵是具有相同特征和纬度的对象的集合，表现为一张二维数据表。其意义是一个对象表示为矩阵中的一行，一个特征表示为矩阵中的一列，每个特征都有数值型的取值。通常会赋予矩阵粗体的大写变量名称，比如<span class="math">\(A\)</span>。</p>
+<p><strong>张量（tensor）</strong><br/>
+​在某些情况下，我们会讨论坐标超过两维的数组。一般地，一个数组中的元素分布在若干维坐标的规则网格中，我们将其称之为张量。使用 <span class="math">\(A\)</span> 来表示张量“A”。张量<span class="math">\(A\)</span>中坐标为<span class="math">\((i,j,k)\)</span>的元素记作<span class="math">\(A_{(i,j,k)}\)</span>。 </p>
+<p><strong>四者之间关系</strong> </p>
+<blockquote>
+<p>标量是0阶张量，向量是一阶张量。举例：<br/>
+​标量就是知道棍子的长度，但是你不会知道棍子指向哪儿。<br/>
+​向量就是不但知道棍子的长度，还知道棍子指向前面还是后面。<br/> ​张量就是不但知道棍子的长度，也知道棍子指向前面还是后面，还能知道这棍子又向上/下和左/右偏转了多少。</p>
+</blockquote>
+<h3 id="112">1.1.2 张量与矩阵的区别<a class="headerlink" href="#112" title="Permanent link">¶</a></h3>
+<ul>
+<li>从代数角度讲， 矩阵它是向量的推广。向量可以看成一维的“表格”（即分量按照顺序排成一排）， 矩阵是二维的“表格”（分量按照纵横位置排列）， 那么<span class="math">\(n\)</span>阶张量就是所谓的<span class="math">\(n\)</span>维的“表格”。 张量的严格定义是利用线性映射来描述。</li>
+<li>从几何角度讲， 矩阵是一个真正的几何量，也就是说，它是一个不随参照系的坐标变换而变化的东西。向量也具有这种特性。</li>
+<li>张量可以用3×3矩阵形式来表达。 </li>
+<li>表示标量的数和表示向量的三维数组也可分别看作1×1，1×3的矩阵。 </li>
+</ul>
+<h3 id="113">1.1.3 矩阵和向量相乘结果<a class="headerlink" href="#113" title="Permanent link">¶</a></h3>
+<p>若使用爱因斯坦求和约定（Einstein summation convention），矩阵<span class="math">\(A\)</span>, <span class="math">\(B\)</span>相乘得到矩阵<span class="math">\(C\)</span>可以用下式表示：
+</p>
+<div class="math">$$ a_{ik}*b_{kj}=c_{ij} \tag{1.3-1} $$</div>
+<p> 
+其中，<span class="math">\(a_{ik}\)</span>, <span class="math">\(b_{kj}\)</span>, <span class="math">\(c_{ij}\)</span>分别表示矩阵<span class="math">\(A, B, C\)</span>的元素，<span class="math">\(k\)</span>出现两次，是一个哑变量（Dummy Variables）表示对该参数进行遍历求和。
+而矩阵和向量相乘可以看成是矩阵相乘的一个特殊情况，例如：矩阵<span class="math">\(B\)</span>是一个<span class="math">\(n \times 1\)</span>的矩阵。</p>
+<h3 id="114">1.1.4 向量和矩阵的范数归纳<a class="headerlink" href="#114" title="Permanent link">¶</a></h3>
+<p><strong>向量的范数(norm)</strong><br/>
+​   定义一个向量为：<span class="math">\(\vec{a}=[-5, 6, 8, -10]\)</span>。任意一组向量设为<span class="math">\(\vec{x}=(x_1,x_2,...,x_N)\)</span>。其不同范数求解如下：</p>
+<ul>
+<li>向量的1范数：向量的各个元素的绝对值之和，上述向量<span class="math">\(\vec{a}\)</span>的1范数结果就是：29。</li>
+</ul>
+<div class="math">$$
+\Vert\vec{x}\Vert_1=\sum_{i=1}^N\vert{x_i}\vert
+$$</div>
+<ul>
+<li>向量的2范数：向量的每个元素的平方和再开平方根，上述<span class="math">\(\vec{a}\)</span>的2范数结果就是：15。</li>
+</ul>
+<div class="math">$$
+\Vert\vec{x}\Vert_2=\sqrt{\sum_{i=1}^N{\vert{x_i}\vert}^2}
+$$</div>
+<ul>
+<li>向量的负无穷范数：向量的所有元素的绝对值中最小的：上述向量<span class="math">\(\vec{a}\)</span>的负无穷范数结果就是：5。  </li>
+</ul>
+<div class="math">$$
+\Vert\vec{x}\Vert_{-\infty}=\min{|{x_i}|}
+$$</div>
+<ul>
+<li>向量的正无穷范数：向量的所有元素的绝对值中最大的：上述向量<span class="math">\(\vec{a}\)</span>的正无穷范数结果就是：10。 </li>
+</ul>
+<div class="math">$$
+\Vert\vec{x}\Vert_{+\infty}=\max{|{x_i}|}
+$$</div>
+<ul>
+<li>向量的p范数：</li>
+</ul>
+<div class="math">$$
+L_p=\Vert\vec{x}\Vert_p=\sqrt[p]{\sum_{i=1}^{N}|{x_i}|^p}
+$$</div>
+<p><strong>矩阵的范数</strong> </p>
+<p>定义一个矩阵<span class="math">\(A=[-1, 2, -3; 4, -6, 6]\)</span>。 任意矩阵定义为：<span class="math">\(A_{m\times n}\)</span>，其元素为 <span class="math">\(a_{ij}\)</span>。</p>
+<p>矩阵的范数定义为</p>
+<div class="math">$$
+\Vert{A}\Vert_p :=\sup_{x\neq 0}\frac{\Vert{Ax}\Vert_p}{\Vert{x}\Vert_p}
+$$</div>
+<p>当向量取不同范数时, 相应得到了不同的矩阵范数。</p>
+<ul>
+<li><strong>矩阵的1范数（列范数）</strong>：矩阵的每一列上的元</li>
+</ul>
+<p>素绝对值先求和，再从中取个最大的,（列和最大），上述矩阵<span class="math">\(A\)</span>的1范数先得到<span class="math">\([5,8,9]\)</span>，再取最大的最终结果就是：9。
+</p>
+<div class="math">$$
+\Vert A\Vert_1=\max_{1\le j\le n}\sum_{i=1}^m|{a_{ij}}|
+$$</div>
+<ul>
+<li><strong>矩阵的2范数</strong>：矩阵<span class="math">\(A^TA\)</span>的最大特征值开平方根，上述矩阵<span class="math">\(A\)</span>的2范数得到的最终结果是：10.0623。 </li>
+</ul>
+<div class="math">$$
+\Vert A\Vert_2=\sqrt{\lambda_{max}(A^T A)}
+$$</div>
+<p>其中， <span class="math">\(\lambda_{max}(A^T A)\)</span> 为 <span class="math">\(A^T A​\)</span> 的特征值绝对值的最大值。
+- <strong>矩阵的无穷范数（行范数）</strong>：矩阵的每一行上的元素绝对值先求和，再从中取个最大的，（行和最大），上述矩阵<span class="math">\(A\)</span>的行范数先得到<span class="math">\([6；16]\)</span>，再取最大的最终结果就是：16。 
+</p>
+<div class="math">$$
+\Vert A\Vert_{\infty}=\max_{1\le i \le m}\sum_{j=1}^n |{a_{ij}}|
+$$</div>
+<ul>
+<li>
+<p><strong>矩阵的核范数</strong>：矩阵的奇异值（将矩阵svd分解）之和，这个范数可以用来低秩表示（因为最小化核范数，相当于最小化矩阵的秩——低秩），上述矩阵A最终结果就是：10.9287。  </p>
+</li>
+<li>
+<p><strong>矩阵的L0范数</strong>：矩阵的非0元素的个数，通常用它来表示稀疏，L0范数越小0元素越多，也就越稀疏，上述矩阵<span class="math">\(A\)</span>最终结果就是：6。</p>
+</li>
+<li><strong>矩阵的L1范数</strong>：矩阵中的每个元素绝对值之和，它是L0范数的最优凸近似，因此它也可以表示稀疏，上述矩阵<span class="math">\(A\)</span>最终结果就是：22。  </li>
+<li><strong>矩阵的F范数</strong>：矩阵的各个元素平方之和再开平方根，它通常也叫做矩阵的L2范数，它的优点在于它是一个凸函数，可以求导求解，易于计算，上述矩阵A最终结果就是：10.0995。  </li>
+</ul>
+<div class="math">$$
+\Vert A\Vert_F=\sqrt{(\sum_{i=1}^m\sum_{j=1}^n{| a_{ij}|}^2)}
+$$</div>
+<ul>
+<li><strong>矩阵的L21范数</strong>：矩阵先以每一列为单位，求每一列的F范数（也可认为是向量的2范数），然后再将得到的结果求L1范数（也可认为是向量的1范数），很容易看出它是介于L1和L2之间的一种范数，上述矩阵<span class="math">\(A\)</span>最终结果就是：17.1559。 </li>
+<li><strong>矩阵的 p范数</strong> </li>
+</ul>
+<div class="math">$$
+\Vert A\Vert_p=\sqrt[p]{(\sum_{i=1}^m\sum_{j=1}^n{| a_{ij}|}^p)}
+$$</div>
+<h3 id="115">1.1.5 如何判断一个矩阵为正定<a class="headerlink" href="#115" title="Permanent link">¶</a></h3>
+<p>判定一个矩阵是否为正定，通常有以下几个方面：  </p>
+<ul>
+<li>顺序主子式全大于0；  </li>
+<li>存在可逆矩阵<span class="math">\(C\)</span>使<span class="math">\(C^TC\)</span>等于该矩阵；</li>
+<li>正惯性指数等于<span class="math">\(n\)</span>；</li>
+<li>合同于单位矩阵<span class="math">\(E\)</span>（即：规范形为<span class="math">\(E\)</span>）</li>
+<li>标准形中主对角元素全为正；</li>
+<li>特征值全为正；</li>
+<li>是某基的度量矩阵。</li>
+</ul>
+<h2 id="12">1.2 导数和偏导数<a class="headerlink" href="#12" title="Permanent link">¶</a></h2>
+<h3 id="121">1.2.1 导数偏导计算<a class="headerlink" href="#121" title="Permanent link">¶</a></h3>
+<p><strong>导数定义</strong>:</p>
+<p>导数(derivative)代表了在自变量变化趋于无穷小的时候，函数值的变化与自变量的变化的比值。几何意义是这个点的切线。物理意义是该时刻的（瞬时）变化率。 ​</p>
+<p><em>注意</em>：在一元函数中，只有一个自变量变动，也就是说只存在一个方向的变化率，这也就是为什么一元函数没有偏导数的原因。在物理学中有平均速度和瞬时速度之说。平均速度有</p>
+<div class="math">$$
+v=\frac{s}{t}
+$$</div>
+<p>其中<span class="math">\(v\)</span>表示平均速度，<span class="math">\(s\)</span>表示路程，<span class="math">\(t\)</span>表示时间。这个公式可以改写为</p>
+<div class="math">$$
+\bar{v}=\frac{\Delta s}{\Delta t}=\frac{s(t_0+\Delta t)-s(t_0)}{\Delta t}
+$$</div>
+<p>其中<span class="math">\(\Delta s\)</span>表示两点之间的距离，而<span class="math">\(\Delta t\)</span>表示走过这段距离需要花费的时间。当<span class="math">\(\Delta t\)</span>趋向于0（<span class="math">\(\Delta t \to 0\)</span>）时，也就是时间变得很短时，平均速度也就变成了在<span class="math">\(t_0\)</span>时刻的瞬时速度，表示成如下形式：</p>
+<div class="math">$$
+v(t_0)=\lim_{\Delta t \to 0}{\bar{v}}=\lim_{\Delta t \to 0}{\frac{\Delta s}{\Delta t}}=\lim_{\Delta t \to 0}{\frac{s(t_0+\Delta t)-s(t_0)}{\Delta t}}
+$$</div>
+<p>实际上，上式表示的是路程<span class="math">\(s\)</span>关于时间<span class="math">\(t\)</span>的函数在<span class="math">\(t=t_0\)</span>处的导数。一般的，这样定义导数：如果平均变化率的极限存在，即有</p>
+<div class="math">$$
+\lim_{\Delta x \to 0}{\frac{\Delta y}{\Delta x}}=\lim_{\Delta x \to 0}{\frac{f(x_0+\Delta x)-f(x_0)}{\Delta x}}
+$$</div>
+<p>则称此极限为函数 <span class="math">\(y=f(x)\)</span> 在点 <span class="math">\(x_0\)</span> 处的导数。记作 <span class="math">\(f'(x_0)\)</span> 或 <span class="math">\(y'\vert_{x=x_0}\)</span> 或 <span class="math">\(\frac{dy}{dx}\vert_{x=x_0}\)</span> 或 <span class="math">\(\frac{df(x)}{dx}\vert_{x=x_0}\)</span>。</p>
+<p>通俗地说，导数就是曲线在某一点切线的斜率。</p>
+<p><strong>偏导数</strong>:</p>
+<p>既然谈到偏导数(partial derivative)，那就至少涉及到两个自变量。以两个自变量为例，<span class="math">\(z=f(x,y)​\)</span>，从导数到偏导数，也就是从曲线来到了曲面。曲线上的一点，其切线只有一条。但是曲面上的一点，切线有无数条。而偏导数就是指多元函数沿着坐标轴的变化率。 </p>
+<p><em>注意</em>：直观地说，偏导数也就是函数在某一点上沿坐标轴正方向的的变化率。</p>
+<p>设函数<span class="math">\(z=f(x,y)​\)</span>在点<span class="math">\((x_0,y_0)​\)</span>的领域内有定义，当<span class="math">\(y=y_0​\)</span>时，<span class="math">\(z​\)</span>可以看作关于<span class="math">\(x​\)</span>的一元函数<span class="math">\(f(x,y_0)​\)</span>，若该一元函数在<span class="math">\(x=x_0​\)</span>处可导，即有</p>
+<div class="math">$$
+\lim_{\Delta x \to 0}{\frac{f(x_0+\Delta x,y_0)-f(x_0,y_0)}{\Delta x}}=A
+$$</div>
+<p>函数的极限<span class="math">\(A\)</span>存在。那么称<span class="math">\(A\)</span>为函数<span class="math">\(z=f(x,y)\)</span>在点<span class="math">\((x_0,y_0)\)</span>处关于自变量<span class="math">\(x\)</span>的偏导数，记作<span class="math">\(f_x(x_0,y_0)\)</span>或<span class="math">\(\frac{\partial z}{\partial x}\vert_{y=y_0}^{x=x_0}\)</span>或<span class="math">\(\frac{\partial f}{\partial x}\vert_{y=y_0}^{x=x_0}\)</span>或<span class="math">\(z_x\vert_{y=y_0}^{x=x_0}\)</span>。</p>
+<p>偏导数在求解时可以将另外一个变量看做常数，利用普通的求导方式求解，比如<span class="math">\(z=3x^2+xy\)</span>关于<span class="math">\(x\)</span>的偏导数就为<span class="math">\(z_x=6x+y\)</span>，这个时候<span class="math">\(y\)</span>相当于<span class="math">\(x\)</span>的系数。</p>
+<p>某点<span class="math">\((x_0,y_0)\)</span>处的偏导数的几何意义为曲面<span class="math">\(z=f(x,y)\)</span>与面<span class="math">\(x=x_0\)</span>或面<span class="math">\(y=y_0\)</span>交线在<span class="math">\(y=y_0\)</span>或<span class="math">\(x=x_0\)</span>处切线的斜率。  </p>
+<h3 id="122">1.2.2 导数和偏导数有什么区别？<a class="headerlink" href="#122" title="Permanent link">¶</a></h3>
+<p>导数和偏导没有本质区别，如果极限存在，都是当自变量的变化量趋于0时，函数值的变化量与自变量变化量比值的极限。  </p>
+<blockquote>
+<ul>
+<li>一元函数，一个<span class="math">\(y\)</span>对应一个<span class="math">\(x\)</span>，导数只有一个。  </li>
+<li>二元函数，一个<span class="math">\(z\)</span>对应一个<span class="math">\(x\)</span>和一个<span class="math">\(y\)</span>，有两个导数：一个是<span class="math">\(z\)</span>对<span class="math">\(x\)</span>的导数，一个是<span class="math">\(z\)</span>对<span class="math">\(y\)</span>的导数，称之为偏导。  </li>
+<li>求偏导时要注意，对一个变量求导，则视另一个变量为常数，只对改变量求导，从而将偏导的求解转化成了一元函数的求导。</li>
+</ul>
+</blockquote>
+<h2 id="13">1.3 特征值和特征向量<a class="headerlink" href="#13" title="Permanent link">¶</a></h2>
+<h3 id="131">1.3.1 特征值分解与特征向量<a class="headerlink" href="#131" title="Permanent link">¶</a></h3>
+<ul>
+<li>
+<p>特征值分解可以得到特征值(eigenvalues)与特征向量(eigenvectors)；</p>
+</li>
+<li>
+<p>特征值表示的是这个特征到底有多重要，而特征向量表示这个特征是什么。  </p>
+</li>
+</ul>
+<p>如果说一个向量<span class="math">\(\vec{v}\)</span>是方阵<span class="math">\(A\)</span>的特征向量，将一定可以表示成下面的形式：</p>
+<div class="math">$$
+A\nu = \lambda \nu
+$$</div>
+<p><span class="math">\(\lambda\)</span>为特征向量<span class="math">\(\vec{v}\)</span>对应的特征值。特征值分解是将一个矩阵分解为如下形式： </p>
+<div class="math">$$
+A=Q\sum Q^{-1}
+$$</div>
+<p>其中，<span class="math">\(Q\)</span>是这个矩阵<span class="math">\(A\)</span>的特征向量组成的矩阵，<span class="math">\(\sum\)</span>是一个对角矩阵，每一个对角线元素就是一个特征值，里面的特征值是由大到小排列的，这些特征值所对应的特征向量就是描述这个矩阵变化方向（从主要的变化到次要的变化排列）。也就是说矩阵<span class="math">\(A\)</span>的信息可以由其特征值和特征向量表示。</p>
+<h3 id="132">1.3.2 奇异值与特征值有什么关系<a class="headerlink" href="#132" title="Permanent link">¶</a></h3>
+<p>那么奇异值和特征值是怎么对应起来的呢？我们将一个矩阵<span class="math">\(A\)</span>的转置乘以<span class="math">\(A\)</span>，并对<span class="math">\(A^TA​\)</span>求特征值，则有下面的形式：</p>
+<div class="math">$$
+(A^TA)V = \lambda V
+$$</div>
+<p>这里<span class="math">\(V​\)</span>就是上面的右奇异向量，另外还有：</p>
+<div class="math">$$
+\sigma_i = \sqrt{\lambda_i}, u_i=\frac{1}{\sigma_i}A\mu_i
+$$</div>
+<p>这里的<span class="math">\(\sigma​\)</span>就是奇异值，<span class="math">\(u​\)</span>就是上面说的左奇异向量。【证明那个哥们也没给】
+​奇异值<span class="math">\(\sigma​\)</span>跟特征值类似，在矩阵<span class="math">\(\sum​\)</span>中也是从大到小排列，而且<span class="math">\(\sigma​\)</span>的减少特别的快，在很多情况下，前10%甚至1%的奇异值的和就占了全部的奇异值之和的99%以上了。也就是说，我们也可以用前<span class="math">\(r​\)</span>（<span class="math">\(r​\)</span>远小于<span class="math">\(m、n​\)</span>）个的奇异值来近似描述矩阵，即部分奇异值分解：
+</p>
+<div class="math">$$
+A_{m\times n}\approx U_{m \times r}\sum_{r\times r}V_{r \times n}^T
+$$</div>
+<p>右边的三个矩阵相乘的结果将会是一个接近于<span class="math">\(A\)</span>的矩阵，在这儿，<span class="math">\(r\)</span>越接近于<span class="math">\(n\)</span>，则相乘的结果越接近于<span class="math">\(A\)</span>。</p>
+<h2 id="14">1.4 概率分布与随机变量<a class="headerlink" href="#14" title="Permanent link">¶</a></h2>
+<h3 id="141">1.4.1 机器学习为什么要使用概率<a class="headerlink" href="#141" title="Permanent link">¶</a></h3>
+<p>事件的概率是衡量该事件发生的可能性的量度。虽然在一次随机试验中某个事件的发生是带有偶然性的，但那些可在相同条件下大量重复的随机试验却往往呈现出明显的数量规律。<br/>
+​机器学习除了处理不确定量，也需处理随机量。不确定性和随机性可能来自多个方面，使用概率论来量化不确定性。<br/> ​概率论在机器学习中扮演着一个核心角色，因为机器学习算法的设计通常依赖于对数据的概率假设。  </p>
+<blockquote>
+<p>​  例如在机器学习（Andrew Ng）的课中，会有一个朴素贝叶斯假设就是条件独立的一个例子。该学习算法对内容做出假设，用来分辨电子邮件是否为垃圾邮件。假设无论邮件是否为垃圾邮件，单词x出现在邮件中的概率条件独立于单词y。很明显这个假设不是不失一般性的，因为某些单词几乎总是同时出现。然而，最终结果是，这个简单的假设对结果的影响并不大，且无论如何都可以让我们快速判别垃圾邮件。</p>
+</blockquote>
+<h3 id="142">1.4.2 变量与随机变量有什么区别<a class="headerlink" href="#142" title="Permanent link">¶</a></h3>
+<p><strong>随机变量</strong>（random variable）</p>
+<p>表示随机现象（在一定条件下，并不总是出现相同结果的现象称为随机现象）中各种结果的实值函数（一切可能的样本点）。例如某一时间内公共汽车站等车乘客人数，电话交换台在一定时间内收到的呼叫次数等，都是随机变量的实例。<br/> ​随机变量与模糊变量的不确定性的本质差别在于，后者的测定结果仍具有不确定性，即模糊性。</p>
+<p><strong>变量与随机变量的区别：</strong><br/> ​当变量的取值的概率不是1时,变量就变成了随机变量；当随机变量取值的概率为1时,随机变量就变成了变量。</p>
+<blockquote>
+<p>比如：<br/>
+​ 当变量<span class="math">\(x\)</span>值为100的概率为1的话,那么<span class="math">\(x=100\)</span>就是确定了的,不会再有变化,除非有进一步运算.
+​ 当变量<span class="math">\(x\)</span>的值为100的概率不为1,比如为50的概率是0.5,为100的概率是0.5,那么这个变量就是会随不同条件而变化的,是随机变量,取到50或者100的概率都是0.5,即50%。  </p>
+</blockquote>
+<h3 id="143">1.4.3 随机变量与概率分布的联系<a class="headerlink" href="#143" title="Permanent link">¶</a></h3>
+<p>一个随机变量仅仅表示一个可能取得的状态，还必须给定与之相伴的概率分布来制定每个状态的可能性。用来描述随机变量或一簇随机变量的每一个可能的状态的可能性大小的方法，就是 <strong>概率分布(probability distribution)</strong>.</p>
+<p>随机变量可以分为离散型随机变量和连续型随机变量。</p>
+<p>相应的描述其概率分布的函数是 </p>
+<p>概率质量函数(Probability Mass Function, <span class="caps">PMF</span>):描述离散型随机变量的概率分布，通常用大写字母 <span class="math">\(P\)</span>表示。</p>
+<p>概率密度函数(Probability Density Function, <span class="caps">PDF</span>):描述连续型随机变量的概率分布，通常用小写字母<span class="math">\(p\)</span>表示。</p>
+<h3 id="144">1.4.4 离散型随机变量和概率质量函数<a class="headerlink" href="#144" title="Permanent link">¶</a></h3>
+<p><span class="caps">PMF</span> 将随机变量能够取得的每个状态映射到随机变量取得该状态的概率。</p>
+<ul>
+<li>一般而言，<span class="math">\(P(x)​\)</span> 表示时<span class="math">\(X=x​\)</span>的概率.</li>
+<li>有时候为了防止混淆，要明确写出随机变量的名称<span class="math">\(P(​\)</span>x<span class="math">\(=x)​\)</span> </li>
+<li>有时候需要先定义一个随机变量，然后制定它遵循的概率分布x服从<span class="math">\(P(​\)</span>x​<span class="math">\()​\)</span> </li>
+</ul>
+<p><span class="caps">PMF</span> 可以同时作用于多个随机变量，即联合概率分布(joint probability distribution) <span class="math">\(P(X=x,Y=y)\)</span>*表示 <span class="math">\(X=x\)</span>和<span class="math">\(Y=y\)</span>同时发生的概率，也可以简写成 <span class="math">\(P(x,y)\)</span>.</p>
+<p>如果一个函数<span class="math">\(P​\)</span>是随机变量 <span class="math">\(X​\)</span> 的 <span class="caps">PMF</span>， 那么它必须满足如下三个条件</p>
+<ul>
+<li><span class="math">\(P​\)</span>的定义域必须是的所有可能状态的集合</li>
+<li><span class="math">\(∀x∈​\)</span>x, <span class="math">\(0 \leq P(x) \leq 1 ​\)</span>. </li>
+<li><span class="math">\(∑_{x∈X} P(x)=1\)</span>. 我们把这一条性质称之为 归一化的(normalized)</li>
+</ul>
+<h3 id="145">1.4.5 连续型随机变量和概率密度函数<a class="headerlink" href="#145" title="Permanent link">¶</a></h3>
+<p>如果一个函数<span class="math">\(p​\)</span>是x的PDF，那么它必须满足如下几个条件</p>
+<ul>
+<li><span class="math">\(p\)</span>的定义域必须是 xx 的所有可能状态的集合。</li>
+<li><span class="math">\(∀x∈X,p(x)≥0\)</span>. 注意，我们并不要求<span class="math">\( p(x)≤1\)</span>，因为此处 <span class="math">\(p(x)\)</span>不是表示的对应此状态具体的概率，而是概率的一个相对大小(密度)。具体的概率，需要积分去求。</li>
+<li><span class="math">\(∫p(x)dx=1\)</span>, 积分下来，总和还是1，概率之和还是1.</li>
+</ul>
+<p>注：<span class="caps">PDF</span><span class="math">\(p(x)\)</span>并没有直接对特定的状态给出概率，给出的是密度，相对的，它给出了落在面积为 <span class="math">\(δx\)</span>的无线小的区域内的概率为<span class="math">\( p(x)δx\)</span>. 由此，我们无法求得具体某个状态的概率，我们可以求得的是 某个状态 <span class="math">\(x\)</span> 落在 某个区间<span class="math">\([a,b]\)</span>内的概率为<span class="math">\( \int_{a}^{b}p(x)dx\)</span>.</p>
+<h3 id="146">1.4.6 举例理解条件概率<a class="headerlink" href="#146" title="Permanent link">¶</a></h3>
+<p>条件概率公式如下：
+</p>
+<div class="math">$$
+P(A|B) = P(A\cap B) / P(B)
+$$</div>
+<p>
+说明：在同一个样本空间<span class="math">\(\Omega\)</span>中的事件或者子集<span class="math">\(A\)</span>与<span class="math">\(B\)</span>，如果随机从<span class="math">\(\Omega\)</span>中选出的一个元素属于<span class="math">\(B\)</span>，那么下一个随机选择的元素属于<span class="math">\(A\)</span> 的概率就定义为在<span class="math">\(B\)</span>的前提下<span class="math">\(A\)</span>的条件概率。条件概率文氏图示意如图1.1所示。<br/>
+<img alt="条件概率" src="E:/DeepLearning-500-questions/ch01_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/img/ch1/conditional_probability.jpg"/></p>
+<p>图1.1 条件概率文氏图示意</p>
+<p>根据文氏图，可以很清楚地看到在事件B发生的情况下，事件A发生的概率就是<span class="math">\(P(A\bigcap B)\)</span>除以<span class="math">\(P(B)\)</span>。<br/>
+​举例：一对夫妻有两个小孩，已知其中一个是女孩，则另一个是女孩子的概率是多少？（面试、笔试都碰到过）<br/>
+​<strong>穷举法</strong>：已知其中一个是女孩，那么样本空间为男女，女女，女男，则另外一个仍然是女生的概率就是1/3。<br/>
+​<strong>条件概率法</strong>：<span class="math">\(P(女|女)=P(女女)/P(女)\)</span>,夫妻有两个小孩，那么它的样本空间为女女，男女，女男，男男，则<span class="math">\(P(女女)\)</span>为1/4，<span class="math">\(P（女）= 1-P(男男)=3/4\)</span>,所以最后<span class="math">\(1/3\)</span>。<br/> 这里大家可能会误解，男女和女男是同一种情况，但实际上类似姐弟和兄妹是不同情况。 </p>
+<h3 id="147">1.4.7 联合概率与边缘概率联系区别<a class="headerlink" href="#147" title="Permanent link">¶</a></h3>
+<p><strong>区别：</strong><br/>
+​联合概率：联合概率指类似于<span class="math">\(P(X=a,Y=b)\)</span>这样，包含多个条件，且所有条件同时成立的概率。联合概率是指在多元的概率分布中多个随机变量分别满足各自条件的概率。<br/>
+​边缘概率：边缘概率是某个事件发生的概率，而与其它事件无关。边缘概率指类似于<span class="math">\(P(X=a)\)</span>，<span class="math">\(P(Y=b)\)</span>这样，仅与单个随机变量有关的概率。</p>
+<p><strong>联系：</strong><br/> ​联合分布可求边缘分布，但若只知道边缘分布，无法求得联合分布。  </p>
+<h3 id="148">1.4.8 条件概率的链式法则<a class="headerlink" href="#148" title="Permanent link">¶</a></h3>
+<p>由条件概率的定义，可直接得出下面的乘法公式：<br/>
+​乘法公式 设<span class="math">\(A, B\)</span>是两个事件，并且<span class="math">\(P(A) &gt; 0\)</span>, 则有 
+</p>
+<div class="math">$$
+P(AB) = P(B|A)P(A)
+$$</div>
+<p>
+推广 
+</p>
+<div class="math">$$
+P(ABC)=P(C|AB)P(B|A)P(A)
+$$</div>
+<p>
+一般地，用归纳法可证：若<span class="math">\(P(A_1A_2...A_n)&gt;0\)</span>，则有
+</p>
+<div class="math">$$
+P(A_1A_2...A_n)=P(A_n|A_1A_2...A_{n-1})P(A_{n-1}|A_1A_2...A_{n-2})...P(A_2|A_1)P(A_1)
+=P(A_1)\prod_{i=2}^{n}P(A_i|A_1A_2...A_{i-1})
+$$</div>
+<p>
+任何多维随机变量联合概率分布，都可以分解成只有一个变量的条件概率相乘形式。 </p>
+<h3 id="149">1.4.9 独立性和条件独立性<a class="headerlink" href="#149" title="Permanent link">¶</a></h3>
+<p><strong>独立性</strong>
+​两个随机变量<span class="math">\(x\)</span>和<span class="math">\(y\)</span>，概率分布表示成两个因子乘积形式，一个因子只包含<span class="math">\(x\)</span>，另一个因子只包含<span class="math">\(y\)</span>，两个随机变量相互独立(independent)。<br/>
+​条件有时为不独立的事件之间带来独立，有时也会把本来独立的事件，因为此条件的存在，而失去独立性。<br/>
+​举例：<span class="math">\(P(XY)=P(X)P(Y)\)</span>, 事件<span class="math">\(X\)</span>和事件<span class="math">\(Y\)</span>独立。此时给定<span class="math">\(Z\)</span>，
+</p>
+<div class="math">$$
+P(X,Y|Z) \not = P(X|Z)P(Y|Z)
+$$</div>
+<p>
+事件独立时，联合概率等于概率的乘积。这是一个非常好的数学性质，然而不幸的是，无条件的独立是十分稀少的，因为大部分情况下，事件之间都是互相影响的。 </p>
+<p><strong>条件独立性</strong><br/>
+​给定<span class="math">\(Z\)</span>的情况下,<span class="math">\(X\)</span>和<span class="math">\(Y\)</span>条件独立，当且仅当
+</p>
+<div class="math">$$
+X\bot Y|Z \iff P(X,Y|Z) = P(X|Z)P(Y|Z)
+$$</div>
+<p>
+<span class="math">\(X\)</span>和<span class="math">\(Y\)</span>的关系依赖于<span class="math">\(Z\)</span>，而不是直接产生。  </p>
+<blockquote>
+<p><strong>举例</strong>定义如下事件：<br/>
+<span class="math">\(X\)</span>：明天下雨；<br/>
+<span class="math">\(Y\)</span>：今天的地面是湿的；<br/>
+<span class="math">\(Z\)</span>：今天是否下雨；<br/>
+<span class="math">\(Z\)</span>事件的成立，对<span class="math">\(X\)</span>和<span class="math">\(Y\)</span>均有影响，然而，在<span class="math">\(Z\)</span>事件成立的前提下，今天的地面情况对明天是否下雨没有影响。 </p>
+</blockquote>
+<h2 id="15">1.5 常见概率分布<a class="headerlink" href="#15" title="Permanent link">¶</a></h2>
+<h3 id="151-bernoulli">1.5.1 Bernoulli分布<a class="headerlink" href="#151-bernoulli" title="Permanent link">¶</a></h3>
+<p><strong>Bernoulli分布</strong>是单个二值随机变量分布, 单参数<span class="math">\(\phi​\)</span>∈[0,1]控制,<span class="math">\(\phi​\)</span>给出随机变量等于1的概率. 主要性质有: 
+</p>
+<div class="math">$$
+\begin{align*}
+P(x=1) &amp;= \phi \\
+P(x=0) &amp;= 1-\phi  \\
+P(x=x) &amp;= \phi^x(1-\phi)^{1-x} \\
+\end{align*}
+$$</div>
+<p>
+其期望和方差为：
+</p>
+<div class="math">$$
+\begin{align*}
+E_x[x] &amp;= \phi \\
+Var_x(x) &amp;= \phi{(1-\phi)}
+\end{align*}
+$$</div>
+<p>
+<strong>Multinoulli分布</strong>也叫<strong>范畴分布</strong>, 是单个<em>k</em>值随机分布,经常用来表示<strong>对象分类的分布</strong>. 其中<span class="math">\(k\)</span>是有限值.Multinoulli分布由向量<span class="math">\(\vec{p}\in[0,1]^{k-1}\)</span>参数化,每个分量<span class="math">\(p_i\)</span>表示第<span class="math">\(i\)</span>个状态的概率, 且<span class="math">\(p_k=1-1^Tp​\)</span>.</p>
+<p><strong>适用范围</strong>: <strong>伯努利分布</strong>适合对<strong>离散型</strong>随机变量建模.</p>
+<h3 id="152">1.5.2 高斯分布<a class="headerlink" href="#152" title="Permanent link">¶</a></h3>
+<p>高斯也叫正态分布(Normal Distribution), 概率度函数如下:<br/>
+</p>
+<div class="math">$$
+N(x;\mu,\sigma^2) = \sqrt{\frac{1}{2\pi\sigma^2}}exp\left ( -\frac{1}{2\sigma^2}(x-\mu)^2 \right )
+$$</div>
+<p>
+其中, <span class="math">\(\mu​\)</span>和<span class="math">\(\sigma​\)</span>分别是均值和方差, 中心峰值x坐标由<span class="math">\(\mu​\)</span>给出, 峰的宽度受<span class="math">\(\sigma​\)</span>控制, 最大点在<span class="math">\(x=\mu​\)</span>处取得, 拐点为<span class="math">\(x=\mu\pm\sigma​\)</span></p>
+<p>正态分布中，±1<span class="math">\(\sigma\)</span>、±2<span class="math">\(\sigma\)</span>、±3<span class="math">\(\sigma\)</span>下的概率分别是68.3%、95.5%、99.73%，这3个数最好记住。 </p>
+<p>此外, 令<span class="math">\(\mu=0,\sigma=1​\)</span>高斯分布即简化为标准正态分布: 
+</p>
+<div class="math">$$
+N(x;\mu,\sigma^2) = \sqrt{\frac{1}{2\pi}}exp\left ( -\frac{1}{2}x^2 \right )
+$$</div>
+<p>
+对概率密度函数高效求值: 
+</p>
+<div class="math">$$
+N(x;\mu,\beta^{-1})=\sqrt{\frac{\beta}{2\pi}}exp\left(-\frac{1}{2}\beta(x-\mu)^2\right)
+$$</div>
+<p>其中，<span class="math">\(\beta=\frac{1}{\sigma^2}\)</span>通过参数<span class="math">\(\beta∈（0，\infty）​\)</span>来控制分布精度。</p>
+<h3 id="153">1.5.3 何时采用正态分布<a class="headerlink" href="#153" title="Permanent link">¶</a></h3>
+<p>问: 何时采用正态分布? 
+答: 缺乏实数上分布的先验知识, 不知选择何种形式时, 默认选择正态分布总是不会错的, 理由如下: </p>
+<ol>
+<li>中心极限定理告诉我们, 很多独立随机变量均近似服从正态分布, 现实中很多复杂系统都可以被建模成正态分布的噪声, 即使该系统可以被结构化分解. </li>
+<li>正态分布是具有相同方差的所有概率分布中, 不确定性最大的分布, 换句话说, 正态分布是对模型加入先验知识最少的分布.</li>
+</ol>
+<p>正态分布的推广: 
+正态分布可以推广到<span class="math">\(R^n\)</span>空间, 此时称为<strong>多位正态分布</strong>, 其参数是一个正定对称矩阵<span class="math">\(\Sigma​\)</span>: 
+</p>
+<div class="math">$$
+N(x;\vec\mu,\Sigma)=\sqrt{\frac{1}{(2\pi)^ndet(\Sigma)}}exp\left(-\frac{1}{2}(\vec{x}-\vec{\mu})^T\Sigma^{-1}(\vec{x}-\vec{\mu})\right)
+$$</div>
+<p>
+对多为正态分布概率密度高效求值: 
+</p>
+<div class="math">$$
+N(x;\vec{\mu},\vec\beta^{-1}) = \sqrt{det(\vec\beta)}{(2\pi)^n}exp\left(-\frac{1}{2}(\vec{x}-\vec\mu)^T\beta(\vec{x}-\vec\mu)\right)
+$$</div>
+<p>
+此处，<span class="math">\(\vec\beta\)</span>是一个精度矩阵。</p>
+<h3 id="154">1.5.4 指数分布<a class="headerlink" href="#154" title="Permanent link">¶</a></h3>
+<p>深度学习中, 指数分布用来描述在<span class="math">\(x=0​\)</span>点处取得边界点的分布, 指数分布定义如下:
+</p>
+<div class="math">$$
+p(x;\lambda)=\lambda I_{x\geq 0}exp(-\lambda{x})
+$$</div>
+<p>
+指数分布用指示函数<span class="math">\(I_{x\geq 0}​\)</span>来使<span class="math">\(x​\)</span>取负值时的概率为零。</p>
+<h3 id="155-laplace">1.5.5 Laplace 分布<a class="headerlink" href="#155-laplace" title="Permanent link">¶</a></h3>
+<p>一个联系紧密的概率分布是 Laplace 分布（Laplace distribution），它允许我们在任意一点 <span class="math">\(\mu\)</span>处设置概率质量的峰值
+</p>
+<div class="math">$$
+Laplace(x;\mu;\gamma)=\frac{1}{2\gamma}exp\left(-\frac{|x-\mu|}{\gamma}\right)
+$$</div>
+<h3 id="156-dirac">1.5.6 Dirac分布和经验分布<a class="headerlink" href="#156-dirac" title="Permanent link">¶</a></h3>
+<p>Dirac分布可保证概率分布中所有质量都集中在一个点上. Diract分布的狄拉克<span class="math">\(\delta​\)</span>函数(也称为<strong>单位脉冲函数</strong>)定义如下: 
+</p>
+<div class="math">$$
+p(x)=\delta(x-\mu), x\neq \mu
+$$</div>
+<div class="math">$$
+\int_{a}^{b}\delta(x-\mu)dx = 1, a &lt; \mu &lt; b
+$$</div>
+<p>Dirac 分布经常作为 经验分布（empirical distribution）的一个组成部分出现
+</p>
+<div class="math">$$
+\hat{p}(\vec{x})=\frac{1}{m}\sum_{i=1}^{m}\delta(\vec{x}-{\vec{x}}^{(i)})
+$$</div>
+<p>
+, 其中, m个点<span class="math">\(x^{1},...,x^{m}\)</span>是给定的数据集, <strong>经验分布</strong>将概率密度<span class="math">\(\frac{1}{m}​\)</span>赋给了这些点.</p>
+<p>当我们在训练集上训练模型时, 可以认为从这个训练集上得到的经验分布指明了<strong>采样来源</strong>.</p>
+<p><strong>适用范围</strong>: 狄拉克δ函数适合对<strong>连续型</strong>随机变量的经验分布.</p>
+<blockquote></blockquote>
+<h2 id="16">1.6 期望、方差、协方差、相关系数<a class="headerlink" href="#16" title="Permanent link">¶</a></h2>
+<h3 id="161">1.6.1 期望<a class="headerlink" href="#161" title="Permanent link">¶</a></h3>
+<p>在概率论和统计学中，数学期望（或均值，亦简称期望）是试验中每次可能结果的概率乘以其结果的总和。它反映随机变量平均取值的大小。</p>
+<ul>
+<li>线性运算： <span class="math">\(E(ax+by+c) = aE(x)+bE(y)+c\)</span> </li>
+<li>推广形式： <span class="math">\(E(\sum_{k=1}^{n}{a_ix_i+c}) = \sum_{k=1}^{n}{a_iE(x_i)+c}\)</span> </li>
+<li>函数期望：设<span class="math">\(f(x)\)</span>为<span class="math">\(x\)</span>的函数，则<span class="math">\(f(x)\)</span>的期望为<ul>
+<li>离散函数： <span class="math">\(E(f(x))=\sum_{k=1}^{n}{f(x_k)P(x_k)}\)</span></li>
+<li>连续函数： <span class="math">\(E(f(x))=\int_{-\infty}^{+\infty}{f(x)p(x)dx}\)</span></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>注意：</p>
+<ul>
+<li>函数的期望大于等于期望的函数（Jensen不等式），即<span class="math">\(E(f(x))\geqslant f(E(x))\)</span> </li>
+<li>一般情况下，乘积的期望不等于期望的乘积。  </li>
+<li>如果<span class="math">\(X\)</span>和<span class="math">\(Y\)</span>相互独立，则<span class="math">\(E(xy)=E(x)E(y)​\)</span>。  </li>
+</ul>
+</blockquote>
+<h3 id="162">1.6.2 方差<a class="headerlink" href="#162" title="Permanent link">¶</a></h3>
+<p>概率论中方差用来度量随机变量和其数学期望（即均值）之间的偏离程度。方差是一种特殊的期望。定义为：</p>
+<div class="math">$$
+Var(x) = E((x-E(x))^2)
+$$</div>
+<blockquote>
+<p>方差性质：  </p>
+<p>1）<span class="math">\(Var(x) = E(x^2) -E(x)^2\)</span><br/>
+2）常数的方差为0;<br/>
+3）方差不满足线性性质;<br/>
+4）如果<span class="math">\(X\)</span>和<span class="math">\(Y\)</span>相互独立, <span class="math">\(Var(ax+by)=a^2Var(x)+b^2Var(y)\)</span> </p>
+</blockquote>
+<h3 id="163">1.6.3 协方差<a class="headerlink" href="#163" title="Permanent link">¶</a></h3>
+<p>协方差是衡量两个变量线性相关性强度及变量尺度。 两个随机变量的协方差定义为：
+</p>
+<div class="math">$$
+Cov(x,y)=E((x-E(x))(y-E(y)))
+$$</div>
+<p>方差是一种特殊的协方差。当<span class="math">\(X=Y\)</span>时，<span class="math">\(Cov(x,y)=Var(x)=Var(y)\)</span>。</p>
+<blockquote>
+<p>协方差性质：  </p>
+<p>1）独立变量的协方差为0。<br/> 2）协方差计算公式：</p>
+</blockquote>
+<div class="math">$$
+Cov(\sum_{i=1}^{m}{a_ix_i}, \sum_{j=1}^{m}{b_jy_j}) = \sum_{i=1}^{m} \sum_{j=1}^{m}{a_ib_jCov(x_iy_i)}
+$$</div>
+<blockquote>
+<p>3）特殊情况：</p>
+</blockquote>
+<div class="math">$$
+Cov(a+bx, c+dy) = bdCov(x, y)
+$$</div>
+<h3 id="164">1.6.4 相关系数<a class="headerlink" href="#164" title="Permanent link">¶</a></h3>
+<p>相关系数是研究变量之间线性相关程度的量。两个随机变量的相关系数定义为：
+</p>
+<div class="math">$$
+Corr(x,y) = \frac{Cov(x,y)}{\sqrt{Var(x)Var(y)}}
+$$</div>
+<blockquote>
+<p>相关系数的性质：<br/>
+1）有界性。相关系数的取值范围是 [-1,1]，可以看成无量纲的协方差。<br/> 2）值越接近1，说明两个变量正相关性（线性）越强。越接近-1，说明负相关性越强，当为0时，表示两个变量没有相关性。  </p>
+</blockquote>
+<h2 id="_2">参考文献<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<p>[1]Ian，Goodfellow，Yoshua，Bengio，Aaron…深度学习[M]，人民邮电出版，2017</p>
+<p>[2]周志华.机器学习[M].清华大学出版社，2016.</p>
+<p>[3]同济大学数学系.高等数学（第七版）[M]，高等教育出版社，2014.</p>
+<p>[4]盛骤，试式千，潘承毅等编. 概率论与数理统计（第4版）[M]，高等教育出版社，2008</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            
+            <section>
+<div class="accordion" id="accordion2">
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
+                href="https://csbwang.github.io/dl_ch1#disqus_thread">
+                Comments
+            </a>
+        </div>
+        <div id="disqus_thread" class="accordion-body collapse">
+            <div class="accordion-inner">
+                <div class="comments">
+                    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'FelixWang';
+        var disqus_identifier = 'https://csbwang.github.io/dl_ch1';
+    var disqus_url = 'https://csbwang.github.io/dl_ch1';
+
+    (function() {
+         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+            <hr/>
+<section>
+    <h2>Keep Reading</h2>
+<ul class="related-posts-list">
+<li><a href="https://csbwang.github.io/dl_ch7" title="第七章 生成对抗网络">第七章 生成对抗网络</a></li>
+<li><a href="https://csbwang.github.io/dl_ch2" title="第二章 机器学习基础">第二章 机器学习基础</a></li>
+<li><a href="https://csbwang.github.io/dl_ch16" title="第十六章 NLP">第十六章 NLP</a></li>
+<li><a href="https://csbwang.github.io/dl_ch18" title="第十八章 后端架构选型及应用场景">第十八章 后端架构选型及应用场景</a></li>
+<li><a href="https://csbwang.github.io/dl_ch18_1" title="第十八章_后端架构选型、离线及实时计算">第十八章_后端架构选型、离线及实时计算</a></li>
+</ul>
+<hr />
+</section>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="https://csbwang.github.io/dl_ch10" title="Previous: 第十章 强化学习">第十章 强化学习</a></li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time pubdate="pubdate" datetime="2019-07-06T00:00:00+08:00"> 7 6, 2019</time>
+
+<h4>Last Updated</h4>
+<time datetime="2019-07-06T00:00:00+08:00"> 7 6, 2019</time>
+
+            <h4>Category</h4>
+            <a class="category-link" href="https://csbwang.github.io/categories.html#shen-du-xue-xi-500wen-ref">深度学习500问</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://csbwang.github.io/tags.html#machine-learning-ref">machine learning
+                    <span>20</span>
+</a></li>
+            </ul>
+<h4>Stay in Touch</h4>
+    <a href="https://github.com/csbwang" title="My Github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-github sidebar-social-links"></i></a>
+<!-- Begin MailChimp Signup Form -->
+<div id="mc-embed-signup">
+<form action="empty" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+<h4>Get Monthly Updates</h4>
+<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Enter your email..." required>
+<div class="clear"><input type="submit" value="Send me Free updates" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+</form>
+</div>
+<!--End mc_embed_signup-->
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>            <script src="https://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+            <script type="text/javascript">
+var disqus_shortname = 'FelixWang';
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+<script  language="javascript" type="text/javascript">
+function uncollapse() {
+    if (window.location.hash.match(/^#comment-\d+$/)) {
+        $('#disqus_thread').collapse('show');
+    }
+}
+</script>
+<script type="text/javascript" language="JavaScript">
+uncollapse();
+window.onhashchange=function(){
+    if (window.location.hash.match(/^#comment-\d+$/))
+        window.location.reload(true);
+}
+</script>
+<script>
+$('#disqus_thread').on('shown', function () {
+    var link = document.getElementsByClassName('accordion-toggle');
+    var old_innerHTML = link[0].innerHTML;
+    $(link[0]).fadeOut(500, function() {
+        $(this).text('Click here to hide comments').fadeIn(500);
+    });
+    $('#disqus_thread').on('hidden', function () {
+        $(link[0]).fadeOut(500, function() {
+            $(this).text(old_innerHTML).fadeIn(500);
+        });
+    })
+})
+</script>
+
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>
